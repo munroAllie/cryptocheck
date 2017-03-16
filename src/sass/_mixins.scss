@@ -1,0 +1,15 @@
+@mixin clearfix {
+	&:before,
+	&:after{
+		content : '';
+		display : table;
+	}
+	&:after{
+		clear: both;
+	}
+}
+
+@mixin dropShadow{
+	-webkit-box-shadow: 2px, 2px, 4px, rgba(0, 0, 0, 0.8);
+	box-shadow: 2px, 2px, 4px, rgba(0, 0, 0, 0.8) ;
+};

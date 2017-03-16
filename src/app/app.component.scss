@@ -1,0 +1,141 @@
+@import '../styles.scss';
+
+//header styling
+
+.header{
+	display: block;
+	background-color: $primary;
+	width: 100%;
+	height: 64px;
+	.brand{
+		padding-top: .4em;
+		text-align: center;
+		font: $brand;
+		color: $white;
+	}; // brand
+}; //header
+
+
+//contents styling
+.contents{
+	margin-top: 1em;
+	@include container;
+	.instructions{
+		text-align: center;
+		font: $paragraph;
+	}; // instructions
+	.stepOne, .stepTwo, .stepThree{
+		margin-top: 2em;
+		display: block;
+		h1{
+			display: inline-block;
+			font: $h1;
+		}; //h1
+		h2{
+			margin-left: 1em;
+			display: inline-block;
+			font: $h2;
+		}; // h2
+	}; // stepone, step two, step three
+	.stepOne{
+		.cryptoCurrency, .regularCurrency{
+			margin-right: 1em;
+			margin-left: 1em;
+			display: inline-block;
+			border-radius: 10px;
+			overflow: hidden;
+			margin-top: 1em;
+			background-color: $gray;
+			width: 182px;
+			height: 113px;
+			border-style: solid;
+	    	border-width: 2px;
+	    	border-color: $white;
+			text-align: center;
+			@include fade;
+			cursor: pointer;
+		}; // cryptocurrency
+		.cryptoCurrency:hover, .regularCurrency:hover{
+	    	border-color: $font;
+	    	@include fade;
+		}; // hover states
+		.cryptoCurrencyActive, .regularCurrencyActive{
+			background-color: $primary;
+			@include dropShadow;
+			h3{
+				color: $white;
+			}; //h3
+		}; // active states
+		img{
+			vertical-align: middle;
+			margin-top: 15%;
+			max-width: 30%;
+		}; // img
+		h3{	
+			font: $h3;
+			margin-top: .25em;
+		}; //h3
+	}; //stepone
+	.stepTwo, .stepThree{
+		.stepTwoDropdown, .stepThreeInput{
+			margin-top: 1em;
+			padding-left: 10px;
+			font: $paragraph;
+			display: block;
+			width: 100%;
+			height: 41px;
+			border-style: solid;
+			border-radius: 10px;
+			border-width: 2px;
+			border-color: $font;
+		}; // step Two
+	}; // step twp dropdown
+	.stepInactive{
+		opacity: 0.2;
+	}; // step Inactive
+}; // contents
+.results{
+	@include container;
+	.whatyouhave{
+		@include clearfix;
+		display: block;
+		vertical-align: middle;
+		img{
+			padding-top: 1em;
+			display: inline-block;
+			width: 32px;
+		}; // img
+		h2{
+			display: inline-block;
+			font: $paragraph;
+		}; //h2
+	}; // results
+	.ticker{
+		margin-top: 1em;
+		display: block;
+		width: 100%;
+		font: $paragraph;
+		.currency{
+			color: $white;
+			padding: 0.5em;
+			padding-left: 1em;
+			border-style: solid;
+			border-width: 2px;
+			border-color: $font;
+			border-radius: 10px 0px 0px 10px; 
+			display: inline-block;
+			width: 20%;
+			background-color: $font;
+		}; //currency
+		.value{
+			margin-left: -10px;
+			border-radius: 0px 10px 10px 0px; 
+			display: inline-block;
+			padding: 0.5em;
+			width: 60%;
+			border-style: solid;
+			border-width: 2px;
+			border-color: $font;
+		}; //value
+	}; // ticker
+}; // results

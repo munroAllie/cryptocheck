@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800);
+
+$primary: #f5d20f;
+$white: #ffffff;
+$gray: #ebebeb;
+$font: #2e2e2e;
+
+$susy:(
+	columns: 12,
+	container: 30em,
+	gutters: 1/4,
+	gutter-position: inside,
+);
+
+$fontFamily:  'Open Sans', Helvetica, Arial, 'sans-serif';
+
+$thin	: 300;
+$normal	: 400;
+$bold	: 700;
+$heavy	: 800;
+
+$brand: $heavy 1.5em $fontFamily;
+$h1: $heavy 1.5em $fontFamily;
+$h2: $normal 1.25em $fontFamily;
+$h3: $normal 1em $fontFamily;
+$paragraph: $normal 1em $fontFamily;

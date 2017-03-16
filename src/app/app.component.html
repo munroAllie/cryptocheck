@@ -1,3 +1,53 @@
-<h1>
-  {{title}}
-</h1>
+<!-- Header-->
+<div class="header">
+	<div class="brand">
+		CryptoCheck
+	</div>	
+</div>
+<!--Content -->
+<section class="contents">
+	<!-- Instructions -->
+	<div class="instructions">
+		<p>Want to know what your currency can convert to as of right now? Follow these three steps.</p>
+	</div>
+	<!-- Step One -->
+	<div class="stepOne">
+		<h1>Step 1 - </h1>
+		<h2>Choose A Currency Type</h2>
+		<div class="cryptoCurrency">
+			<img src="../assets/images/cryptocurrency.svg">
+			<h3>Cryptocurrency</h3>
+		</div>
+		<div class="regularCurrency">
+			<img src="../assets/images/regularcurrency.svg">
+			<h3>Regular Currency</h3>
+		</div>
+	</div>
+	<!-- Step Two -->
+	<div class="stepTwo">
+		<h1>Step 2 - </h1>
+		<h2>Choose A Currency</h2>
+		<select name="cryptocurrency" class="stepTwoDropdown">
+			<option value="default" selected >make a selection</option>
+			<option value="Bitcoin">Bitcoin</option>
+			<option value="Dash">DASH</option>
+			<option value="Etherium">Etherium</option>
+		</select>
+	</div>
+	<!-- Step Three -->
+	<div class="stepThree">
+		<h1>Step 3 - </h1><h2>Enter Your Holdings</h2>
+		<input type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings...">
+	</div>
+</section>
+<section class="results">
+
+<div class="whatyouhave">
+	<img src="../assets/images/questionmark.svg">
+	<h2>You Have....</h2>
+</div>
+<div class="ticker">
+	<div class="currency">CAD</div>
+	<div class="value">$48.04</div>
+</div>
+</section>
