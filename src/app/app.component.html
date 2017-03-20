@@ -1,9 +1,12 @@
 <!-- Header-->
+<md-toolbar><h1>CryptoCheck</h1></md-toolbar>
+<!--
 <div class="header">
 	<div class="brand">
 		CryptoCheck
 	</div>	
-</div>
+</div><-->
+
 <!--Content -->
 <section class="contents">
 	<!-- Instructions -->
@@ -14,25 +17,27 @@
 		</p>
 	</div>
 	<!-- Step One -->
+
 	<div class="stepOne">
 		<h1>Step 1 - </h1>
 		<h2>Choose A Currency Type</h2>
-		<div class="cryptoCurrency">
+		
+		<div class="cryptoCurrency" (click)="cryptoSelected = true; regSelected = false" [ngClass]="{active: cryptoSelected}">
 			<img src="../assets/images/cryptocurrency.svg">
 			<h3>Cryptocurrency</h3>
 		</div>
-		<div class="regularCurrency">
+		<div class="regularCurrency" (click)="regSelected = true; cryptoSelected = false" [ngClass]="{active: regSelected}">
 			<img src="../assets/images/regularcurrency.svg">
 			<h3>Regular Currency</h3>
 		</div>
 	</div>
 	<!-- Step Two -->
-	<div class="stepTwo">
+	<div class="stepTwo" [ngClass]="{Active: regSelected || cryptoSelected}">
 		<h1>Step 2 - </h1>
 		<h2>Choose A Currency</h2>
 		<select name="cryptocurrency" class="stepTwoDropdown">
 			<option value="default" selected >make a selection</option>
-			<option value="Bitcoin">Bitcoin</option>
+			<option value="Bitcoin" (click)="bitCoin = true">Bitcoin</option>
 			<option value="Dash">DASH</option>
 			<option value="Etherium">Etherium</option>
 		</select>

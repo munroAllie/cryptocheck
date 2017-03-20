@@ -39,6 +39,7 @@
 	}; // stepone, step two, step three
 	.stepOne{
 		.cryptoCurrency, .regularCurrency{
+			@include dropShadow;
 			margin-right: 1em;
 			margin-left: 1em;
 			display: inline-block;
@@ -59,12 +60,11 @@
 	    	border-color: $font;
 	    	@include fade;
 		}; // hover states
-		.cryptoCurrencyActive, .regularCurrencyActive{
+		.active{
 			background-color: $primary;
 			@include dropShadow;
-			h3{
-				color: $white;
-			}; //h3
+			img{
+			};
 		}; // active states
 		img{
 			vertical-align: middle;
@@ -77,6 +77,7 @@
 		}; //h3
 	}; //stepone
 	.stepTwo, .stepThree{
+		opacity: 0.2;
 		.stepTwoDropdown, .stepThreeInput{
 			margin-top: 1em;
 			padding-left: 10px;
@@ -88,10 +89,12 @@
 			border-radius: 10px;
 			border-width: 2px;
 			border-color: $font;
+			@include fade;
 		}; // step Two
 	}; // step twp dropdown
-	.stepInactive{
-		opacity: 0.2;
+	.Active{
+		@include fade;
+		opacity: 1;
 	}; // step Inactive
 }; // contents
 .results{
