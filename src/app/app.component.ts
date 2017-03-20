@@ -10,6 +10,7 @@ import {Ticker} from './TickerType'; //Imports the Model Ticker that holds the f
 })
 export class AppComponent {
 
+
   ticker: Ticker[]; //Will hold the data from the JSON file
   
   constructor(private conversionService: ConversionService){} //Creates a conversionService object so we can call the GetTickerMethod from the service.
@@ -25,4 +26,45 @@ export class AppComponent {
                                   )//Ends the "then"function
   }//Ends the GetCurrentTicker Functions
 }//End AppComponent Class
+
+  time : String;
+  private step2AOptions : any[];
+  private step2BOptions : any[];
+  private step2Selection: string;
+  private conversionService: ConversionService;
+  private holdings: number;
+  private CAD: number = 1;
+  private bitcoin: number = 1283.00;
+
+  constructor(){
+
+    this.step2AOptions = [
+    {name: "make a selection..."},
+    {name: "Bitcoin"},
+    {name: "DASH"},
+    {name: "Etherium"}  
+  ]; // step2AOptions
+
+  this.step2BOptions = [
+    {name: "make a selection..."},
+    {name: "CAD"},
+    {name: "USD"} 
+  ]; // step2BOptions
+
+  } // constructor
+  getCurrentTime() {
+    this.conversionService.getCurrentTime()
+    .subscribe(
+     data => this.time = JSON.stringify(data), 
+     error => alert(error)
+      )  // subscribe
+  };  // get current time
+  NgOnChanges(){
+    console.log("I am changing!!");
+    if (this.step2Selection === this.step2AOptions[1]){
+      this.CAD = this.holdings * this.bitcoin;
+    } // bitcoin if
+  } //ng chnages
+} //export class
+
 
