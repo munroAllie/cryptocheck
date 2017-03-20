@@ -8,8 +8,6 @@ import {ConversionService} from './Conversion.service';
   providers: [ConversionService]
 })
 export class AppComponent {
-  title = 'app works!';
-  }
 
   time : String;
 
