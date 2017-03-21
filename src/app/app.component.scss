@@ -1,21 +1,13 @@
 @import '../styles.scss';
 
-//header styling
 
-.header{
-	display: block;
-	background-color: $primary;
-	width: 100%;
-	height: 64px;
-	.brand{
-		padding-top: .4em;
-		text-align: center;
-		font: $brand;
-		color: $white;
-	}; // brand
-}; //header
+.spacer {
+  flex: 1 1 auto;
+}; //spacer
 
-
+.donate{
+	max-width: 2em;
+}; //donate
 //contents styling
 .contents{
 	margin-top: 1em;

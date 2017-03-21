@@ -1,11 +1,10 @@
 <!-- Header-->
-<md-toolbar><h1>CryptoCheck</h1></md-toolbar>
-<!--
-<div class="header">
-	<div class="brand">
-		CryptoCheck
-	</div>	
-</div><-->
+<md-toolbar color="primary">
+	<h1>CryptoCheck</h1>
+	<span class="spacer"></span>
+	<img class= "donate" src="../assets/images/donate.svg">
+	</md-toolbar>
+
 
 <!--Content -->
 <section class="contents">
@@ -39,12 +38,16 @@
 			<option value="default">make a selection...</option>
 		</select>
 		<!-- If Crypto Currency checked in Step 1 -->
-		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="cryptoSelected" [(ngModel)]="step2Selection">
-			<option *ngFor="let step2AOption of step2AOptions" value="{{step2AOption.name}}">{{step2AOption.name}}</option>
+		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="cryptoSelected" [(ngModel)]="step2Selection" >
+			<option 
+			*ngFor="let step2AOption of step2AOptions" 
+			value="{{step2AOption.name}}">
+				{{step2AOption.name}}
+			</option>
 		</select>
 		<!-- If Regular Currency selected in Step 1 -->
 		<select name="regcurrency" class="stepTwoDropdown" *ngIf="regSelected" [(ngModel)]="step2Selection">
-			<option *ngFor="let step2BOption of step2BOptions" value="{{step2BOption.name}}">{{step2BOption.name}}</option>
+			<option *ngFor="let step2BOption of step2BOptions">{{step2BOption.name}}</option>
 		</select>
 	</div>
 	<!-- Step Three -->
