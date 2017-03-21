@@ -12,7 +12,6 @@
 	<!-- Instructions -->
 	<div class="instructions">
 		<p>Want to know what your currency can convert to as of right now? Follow these three steps.
-			{{ticker}}
 		<button (click) = "getCurrentTicker('BTC','BBR')">Click Here to get the current time</button>
 		</p>
 	</div>
@@ -60,7 +59,15 @@
 
 <div class="whatyouhave">
 	<img src="../assets/images/questionmark.svg">
-	<h2>You Have....</h2>
+	<h2>You Have...</h2>
+</div>
+<div class="ticker">
+	<div class="currency">CAD</div>
+	<div class="value">{{CAD}}</div>
+</div>
+<div class="whatyouhave">
+	<img src="../assets/images/questionmark.svg">
+	<h2>You could Buy...</h2>
 </div>
 <div class="ticker">
 	<div class="currency">CAD</div>
