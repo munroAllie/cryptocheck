@@ -1,0 +1,56 @@
+<!--Content -->
+<section class="contents">
+	<!-- Instructions -->
+	<div class="instructions">
+		<p>Want to know what your currency can convert to as of right now?
+		<button (click) = "getCurrentTicker('BTC','BBR')">Click Here to get the current time</button>
+		</p>
+		<h2>Follow These three steps:</h2>
+	</div>
+	<!-- Step One -->
+<form>
+	<div class="stepOne">
+		<h1>Step 1 - </h1>
+		<h2>Choose A Currency Type</h2>
+		<div class="selectionWrapper">
+			<div class="cryptoCurrency" (click)="cryptoSelected = true; regSelected = false" [ngClass]="{active: cryptoSelected}">
+				<img src="../assets/images/cryptocurrency.svg">
+				<h3>Cryptocurrency</h3>
+			</div>
+			<div class="regularCurrency" (click)="regSelected = true; cryptoSelected = false" [ngClass]="{active: regSelected}">
+				<img src="../assets/images/regularcurrency.svg">
+				<h3>Regular Currency</h3>
+			</div>
+		</div>
+		<hr>
+	</div>
+	<!-- Step Two -->
+	<div class="stepTwo" [ngClass]="{Active: regSelected || cryptoSelected}">
+		<h1>Step 2 - </h1>
+		<h2>Choose A Currency</h2>
+		<!-- placeholder-->
+		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="!cryptoSelected && !regSelected">
+			<option value="default">make a selection...</option>
+		</select>
+		<!-- If Crypto Currency checked in Step 1 -->
+		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="cryptoSelected" [(ngModel)]="step2Selection" >
+			<option 
+			*ngFor="let step2AOption of step2AOptions" 
+			value="{{step2AOption.name}}">
+				{{step2AOption.name}}
+			</option>
+		</select>
+		<!-- If Regular Currency selected in Step 1 -->
+		<select name="regcurrency" class="stepTwoDropdown" *ngIf="regSelected" [(ngModel)]="step2Selection">
+			<option *ngFor="let step2BOption of step2BOptions">{{step2BOption.name}}</option>
+		</select>
+		<hr>
+	</div>
+	<!-- Step Three -->
+	<div class="stepThree" [ngClass]="{Active: step2Selection}">
+		<h1>Step 3 - </h1><h2>Enter Your Holdings</h2>
+		<input type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings">
+	</div>	
+</form>
+</section>
+<hr>
