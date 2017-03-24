@@ -1,9 +1,15 @@
 @import '../../styles.scss';
 //contents styling
 .contents{
+	@include container;
 	margin-left: 1em;
 	.instructions{
+		margin-top: 1em;
+		color: $font;
 		font: $paragraph;
+		h2{
+			margin: .5em 0em;
+		};
 	}; // instructions
 	.stepOne, .stepTwo, .stepThree{
 		display: block;
@@ -78,3 +84,55 @@
 		opacity: 1;
 	}; // step Inactive
 }; // contents
+@import '../../styles.scss';
+	.results{
+		width: 100%;
+		display: inline-block;
+		.whatyouhave{
+			@include clearfix;
+			display: block;
+			vertical-align: middle;
+			img{
+				padding-top: 1em;
+				display: inline-block;
+				width: 32px;
+			}; // img
+			h2{
+				display: inline-block;
+				font: $paragraph;
+			}; //h2
+		}; // results
+		.ticker{
+			
+			@include clearfix;
+			margin-top: 1em;
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+			font: $paragraph;
+			.currency{
+				color: $white;
+				height: 1em;
+				padding: 0.5em;
+				padding-left: 1em;
+				border-style: solid;
+				border-width: 2px;
+				border-color: $font;
+				border-radius: 10px 0px 0px 10px; 
+				display: inline-block;
+				width: 20%;
+				background-color: $font;
+			}; //currency
+			.value{
+				height: 1em;
+				margin-left: -10px;
+				border-radius: 0px 10px 10px 0px; 
+				display: inline-block;
+				padding: 0.5em;
+				width: 65%;
+				border-style: solid;
+				border-width: 2px;
+				border-color: $font;
+			}; //value
+		}; // ticker
+	}; // results

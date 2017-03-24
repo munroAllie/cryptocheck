@@ -7,16 +7,16 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import {ConversionService} from 'app/Conversion.service';
 import { AppComponent } from './app.component';
-import { ResultsComponent } from './results/results.component';
-import { StepsComponent } from './steps/steps.component';
-import { HeaderComponent } from './header/header.component';
+import { ContentsComponent } from './contents/contents.component';
 
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ResultsComponent,
-    StepsComponent,
-    HeaderComponent
+    ContentsComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
