@@ -1,0 +1,138 @@
+@import '../../styles.scss';
+//contents styling
+.contents{
+	@include container;
+	margin-left: 1em;
+	.instructions{
+		margin-top: 1em;
+		color: $font;
+		font: $paragraph;
+		h2{
+			margin: .5em 0em;
+		};
+	}; // instructions
+	.stepOne, .stepTwo, .stepThree{
+		display: block;
+		h1{
+			display: inline-block;
+			font: $h1;
+		}; //h1
+		h2{
+			display: inline-block;
+			font: $h2;
+		}; // h2
+	}; // stepone, step two, step three
+	.stepOne{
+		.selectionWrapper{
+			display: block;
+		};
+		.cryptoCurrency, .regularCurrency{		
+			@include BottomRightDropShadow;
+			margin-right: 1em;
+			margin-left: 1em;
+			display: inline-block;
+			border-radius: 10px;
+			overflow: hidden;
+			background-color: $accent;
+			width: 182px;
+			height: 113px;
+			border-style: solid;
+	    	border-width: 2px;
+	    	border-color: rgba(0, 0, 0, 0);
+			text-align: center;
+			@include fade;
+			cursor: pointer;
+		}; // cryptocurrency
+		.cryptoCurrency:hover, .regularCurrency:hover{
+	    	border-color: $font;
+	    	@include fade;
+		}; // hover states
+		.active{
+			background-color: $primary;
+			
+			img{
+			};
+		}; // active states
+		img{
+			vertical-align: middle;
+			margin-top: 15%;
+			max-width: 30%;
+		}; // img
+		h3{	
+			font: $h3;
+			margin-top: .25em;
+		}; //h3
+	}; //stepone
+	.stepTwo, .stepThree{
+		opacity: 0.2;
+		.stepTwoDropdown, .stepThreeInput{
+			margin-top: 1em;
+			padding-left: 10px;
+			font: $paragraph;
+			display: block;
+			width: 300px;
+			height: 41px;
+			border-style: solid;
+			border-radius: 10px;
+			border-width: 2px;
+			border-color: $font;
+			@include fade;
+		}; // step Two
+	}; // step twp dropdown
+	.Active{
+		@include fade;
+		opacity: 1;
+	}; // step Inactive
+}; // contents
+@import '../../styles.scss';
+	.results{
+		width: 100%;
+		display: inline-block;
+		.whatyouhave{
+			@include clearfix;
+			display: block;
+			vertical-align: middle;
+			img{
+				padding-top: 1em;
+				display: inline-block;
+				width: 32px;
+			}; // img
+			h2{
+				display: inline-block;
+				font: $paragraph;
+			}; //h2
+		}; // results
+		.ticker{
+			
+			@include clearfix;
+			margin-top: 1em;
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+			font: $paragraph;
+			.currency{
+				color: $white;
+				height: 1em;
+				padding: 0.5em;
+				padding-left: 1em;
+				border-style: solid;
+				border-width: 2px;
+				border-color: $font;
+				border-radius: 10px 0px 0px 10px; 
+				display: inline-block;
+				width: 20%;
+				background-color: $font;
+			}; //currency
+			.value{
+				height: 1em;
+				margin-left: -10px;
+				border-radius: 0px 10px 10px 0px; 
+				display: inline-block;
+				padding: 0.5em;
+				width: 65%;
+				border-style: solid;
+				border-width: 2px;
+				border-color: $font;
+			}; //value
+		}; // ticker
+	}; // results

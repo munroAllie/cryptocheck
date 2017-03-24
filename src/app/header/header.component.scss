@@ -1,0 +1,43 @@
+@import '../../styles.scss';
+.headerBar{
+	width: 100%;
+	padding: .5em;
+	background-color: $primary;
+	@include VerticleDropShadow;
+	.brandWrapper{
+		display: inline-block;
+		height: 40px;
+		padding: 5px 0;
+		
+		.brand{
+			width: 50px;
+			height: auto;
+		}; //brand
+		.brandTitle{
+			vertical-align: top;
+			display: block;
+			font: $brand;
+			display: inline-block;
+			color: $white;
+		}; //h1
+	} // brandwrapper
+	.donate{
+		display: inline-block;
+		float: right;
+		background-color: $accent;
+		border-radius: 10px;
+		padding: 3px;
+		margin-right: 1em;
+		@include BottomRightDropShadow;
+		width: 40px;
+		height: 40px;
+		@include fade;
+	}; //donate
+	.donate:hover{
+		background-color: darken($accent, 5%);
+		cursor: pointer;
+		width: 2.2em;
+		height: 2.2em;
+		@include fade;
+	}; //donate hover
+}; //md-toolbar

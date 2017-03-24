@@ -1,10 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-/*@import 'sass/mixins'; */
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+//@import 'theme.scss';
 
 //Compass Import
 @import "~compass-mixins/";
-//@import "~compass-mixins/lib/compass/reset";
+@import "~compass-mixins/lib/compass/reset";
 @import "~compass-mixins/lib/compass/css3/box-shadow";
 @import "~compass-mixins/lib/compass/css3/text-shadow";
 @import "~compass-mixins/lib/compass/css3/filter";
