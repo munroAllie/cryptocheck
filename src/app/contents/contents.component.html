@@ -50,11 +50,11 @@
 		<input type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings" (ngModelChange)="youHave(); youCouldHave()">
 	</div>	
 </form>
-<hr>
+
 </section>
 
 <section class="results" *ngIf="holdings">
-
+<hr>
 <div class="whatyouhave">
 	<img src="../assets/images/questionmark.svg">
 	<h2>You Have...</h2>

@@ -1,8 +1,15 @@
 @import '../../styles.scss';
-.headerBar{
+.footerBar{
+	color: $font;
+	margin-top: 4em;
+	height: 100px;
 	width: 100%;
 	padding: .5em;
 	background-color: $accent;
 	@include VerticleDropShadow;
-	
+
 }; //header bar
+.donatebitcoin 	{
+	font: $h3;
+	
+};

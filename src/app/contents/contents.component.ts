@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { Ticker } from '../TickerType'; 
+import { ConversionService } from '../Conversion.service';
 
 @Component({
   selector: 'app-contents',
   templateUrl: './contents.component.html',
   styleUrls: ['./contents.component.scss']
 })
-export class ContentsComponent {
+export class ContentsComponent implements OnInit{
+
+  ticker: Ticker[];
+
+//Will hold the data from the JSON file
+
 
   // Variables for front end
  cryptoSelected : boolean = false;
@@ -16,6 +23,11 @@ export class ContentsComponent {
       {name: "DASH"},
       {name: "Etherium"}  
     ]; // step2AOptions
+
+    
+btc:string = "BTC_ETH";
+eth:string;
+
  step2BOptions : any[] = [
       {name: "make a selection..."},
       {name: "CAD"},
@@ -178,6 +190,21 @@ usdtocad: number = 0;
         this.youcouldhaves.push({name: "Bitcoin", amount: this.usdtobit});
       }
     }
-  constructor() { 
+
+coins: any[] = ["BTC_ETH", "BTC_DASH"];
+coinsResults: any[] = [];
+    
+
+  constructor( private conversionService: ConversionService ) { 
+    
   }
-}
+    ngOnInit(){
+
+      setInterval(() => {
+        this.coins.forEach((coin, i) => {
+          this.conversionService.getCurrentTicker(coin);
+        });
+      }, 1000);
+    }
+  };
+

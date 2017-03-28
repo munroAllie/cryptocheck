@@ -4,6 +4,7 @@
 	@include container;
 	margin-left: 1em;
 	.instructions{
+		@include floatinLeft(0s);
 		margin-top: 1em;
 		color: $font;
 		font: $paragraph;
@@ -23,8 +24,11 @@
 		}; // h2
 	}; // stepone, step two, step three
 	.stepOne{
+		opacity: 0;
+		@include fade(.25s);
 		.selectionWrapper{
 			display: block;
+			margin-left: -1em;
 		};
 		.cryptoCurrency, .regularCurrency{		
 			@include BottomRightDropShadow;
@@ -40,16 +44,15 @@
 	    	border-width: 2px;
 	    	border-color: rgba(0, 0, 0, 0);
 			text-align: center;
-			@include fade;
+			
 			cursor: pointer;
 		}; // cryptocurrency
 		.cryptoCurrency:hover, .regularCurrency:hover{
 	    	border-color: $font;
-	    	@include fade;
+
 		}; // hover states
 		.active{
 			background-color: $primary;
-			
 			img{
 			};
 		}; // active states
@@ -63,30 +66,47 @@
 			margin-top: .25em;
 		}; //h3
 	}; //stepone
+
+	//initialize status of step 2 and three
 	.stepTwo, .stepThree{
-		opacity: 0.2;
+		opacity: 0;
+	};
+	//animate
+	.stepTwo{
+		@include fadeHalf(0.5s);
+
+	};
+	.stepThree{
+		@include fadeHalf(0.75s);
+	};
+
+	.stepTwo, .stepThree{
 		.stepTwoDropdown, .stepThreeInput{
 			margin-top: 1em;
-			padding-left: 10px;
 			font: $paragraph;
 			display: block;
-			width: 300px;
+			width: 410px;
 			height: 41px;
 			border-style: solid;
 			border-radius: 10px;
 			border-width: 2px;
 			border-color: $font;
-			@include fade;
 		}; // step Two
+		.stepThreeInput{
+			width: 400px;
+			padding-left: 10px;
+		}
 	}; // step twp dropdown
 	.Active{
-		@include fade;
+		@include fade(0s);
 		opacity: 1;
 	}; // step Inactive
 }; // contents
 @import '../../styles.scss';
 	.results{
+		@include floatin;
 		width: 100%;
+		margin-left: 1em;
 		display: inline-block;
 		.whatyouhave{
 			@include clearfix;
@@ -120,7 +140,7 @@
 				border-color: $font;
 				border-radius: 10px 0px 0px 10px; 
 				display: inline-block;
-				width: 20%;
+				width: 100px;
 				background-color: $font;
 			}; //currency
 			.value{
@@ -129,7 +149,7 @@
 				border-radius: 0px 10px 10px 0px; 
 				display: inline-block;
 				padding: 0.5em;
-				width: 65%;
+				width: 280px;
 				border-style: solid;
 				border-width: 2px;
 				border-color: $font;
