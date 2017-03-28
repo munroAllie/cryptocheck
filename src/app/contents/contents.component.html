@@ -59,9 +59,9 @@
 	<img src="../assets/images/questionmark.svg">
 	<h2>You Have...</h2>
 </div>
-<div class="ticker" *ngFor="let youhave of youhaves">
-	<div class="currency">{{youhave.name}}</div>
-	<div class="value">${{youhave.amount}}</div>
+<div class="ticker" *ngFor="let coinresult of coinResults">
+	<div class="currency">{{coinresult.name}}</div>
+	<div class="value">${{coinresult.amount}}</div>
 </div>
 <div class="whatyouhave">
 	<img src="../assets/images/questionmark.svg">

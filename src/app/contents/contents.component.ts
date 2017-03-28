@@ -201,8 +201,9 @@ coinsResults: any[] = [];
     ngOnInit(){
 
       setInterval(() => {
+        this.coinsResults.length = 0;
         this.coins.forEach((coin, i) => {
-          this.conversionService.getCurrentTicker(coin);
+          this.conversionService.getCurrentTicker(coin, this.coinsResults);
         });
       }, 1000);
     }

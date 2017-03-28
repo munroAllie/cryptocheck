@@ -17,11 +17,12 @@ export class ConversionService{
             .then(response => response.json() as Ticker[]);
     }// Get Current Ticker
 
-    getCurrentTicker(name1:string) {
+    getCurrentTicker(name1:string, array: any[]) {
         this.getFullTicker() //Sends a request for the ticker information
                             .then(res => { this.ticker = res;
-                                console.log(this.ticker[name1]);
-                               console.log(this.ticker[name1].last);
+                               //console.log(this.ticker[name1].last);
+                               array.push({name: name1, amount: this.ticker[name1].last});
+                               return(array);
                                          }//End the "res"" fuction      
                                   )//Ends the "then"function
   }//Ends the GetCurrentTicker Functions
