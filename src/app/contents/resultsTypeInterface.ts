@@ -1,4 +1,4 @@
 export interface resultsType{
-    name: string;
-    amount: Number;
+   name: string; 
+   amount: Number;
 }

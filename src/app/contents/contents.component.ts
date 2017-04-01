@@ -31,6 +31,7 @@ export class ContentsComponent implements OnInit{
  holdings: number = 10;
 
 coins: any[] = ["BTC_ETH", "BTC_DASH"];
+currencies: any[] = ["CAD"];
 ticker: Ticker[];
 coinResults: resultsType[] =[]; 
 currencyExchange:any[] = [];   
@@ -48,14 +49,13 @@ currencyExchange:any[] = [];
         {
           var temp = {name: currencyName, amount: this.ticker[currencyName].last}
           this.coinResults.push(temp);
-          console.log(temp.name);
-
         }
-      }//end the for loop
+      }//end the for loop   
       }); //end the subscribe function                                                       
      this.conversionService.getFullCurrencyExchange().subscribe( (res) => {this.currencyExchange = res["rates"]
-      });
-      console.log(this.coinResults);
+      console.log(this.currencyExchange[this.currencies[0]]);  
+    });
+  
     }// End OnInit
 
     Update()
