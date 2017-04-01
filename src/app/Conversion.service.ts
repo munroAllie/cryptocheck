@@ -11,21 +11,15 @@ export class ConversionService{
 
     constructor(public http: Http) {}
     
-    getFullTicker(): Promise<Ticker[]> {
+    getFullTicker() {
         return this.http.get('https://poloniex.com/public?command=returnTicker')
-            .toPromise()
-            .then(response => response.json() as Ticker[]);
+            .map(response => response.json() as Ticker[]);
     }// Get Current Ticker
 
-    getCurrentTicker(name1:string, array: any[]) {
-        this.getFullTicker() //Sends a request for the ticker information
-                            .then(res => { this.ticker = res;
-                               //console.log(this.ticker[name1].last);
-                               array.push({name: name1, amount: this.ticker[name1].last});
-                               return(array);
-                                         }//End the "res"" fuction      
-                                  )//Ends the "then"function
-  }//Ends the GetCurrentTicker Functions
+    getFullCurrencyExchange(){
+        return this.http.get('http://api.fixer.io/latest?base=USD')
+            .map(response=> response.json())
+    }
 }
   
 
