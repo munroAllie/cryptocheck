@@ -4,14 +4,15 @@
 	@include container;
 	margin-left: 1em;
 	.instructions{
-		@include floatinLeft(0s);
 		margin-top: 1em;
-		color: $font;
 		font: $paragraph;
-		h2{
-			margin: .5em 0em;
-		};
-	}; // instructions
+		p{
+			line-height: 1.5em;
+			span{
+				font-weight: $heavy;
+			}	
+		}
+	}
 	.stepOne, .stepTwo, .stepThree{
 		display: block;
 		margin-bottom: 1em;
@@ -118,16 +119,56 @@
 		.whatyouhave{
 			@include clearfix;
 			display: block;
-			img{
-				display: inline-block;
-				width: 32px;
-				height: 32px;
-			}; // img
-			h2{
-				display: inline-block;
+			.pinningInstructions{
+				margin-top: 1em;
 				font: $paragraph;
-			}; //h2
-		}; // results
+				text-align: left;
+				border-radius: 5px;
+				color: $white;
+				background-color: $font;
+				padding: .5em;
+				max-width: 200px;
+				i{
+					float: left;
+					margin-left: 1em;
+				};
+				span{
+					margin-left: .5em;
+				}; // span
+			}; // pinning Instructions
+			.pinningInstructions:hover{
+				background-color: $primary;
+				@include BottomRightDropShadow;
+				@include transition(.5s); 
+				cursor: pointer;
+			} // pinning instructions hover
+			
+			.explanation{
+				@include span (6 of 6);
+				font: $paragraph;
+				width: 800px;
+				margin-top: 0px;
+				padding: 1em;
+				margin-top: .5em;
+				border-style: solid;
+				border-width: 2px;
+				border-color: $font;
+				border-radius: 5px;
+				@include explanation;
+				span{
+					font-weight: $heavy;
+				};
+				.iconwrapper{
+					@include clearfix;
+					font-size: 3em;
+					@include span(1 of 6);
+				};
+				.explanatiowrapper{
+					@include span (5 of 6);
+				}
+				
+			}; // explanation
+		}; // what you have
 		.ticker{
 			margin-top: 1em;
 			display: inline-block;
@@ -142,9 +183,13 @@
 				}
 				.selectedCoin{
 					color: $primary;
+					
 				}
+				.selectedCoin:hover{
+					cursor: default;
+				};
 			}
-			.currency{
+			.name{
 				color: $white;
 				height: 1em;
 				padding: 0.5em;
@@ -156,14 +201,22 @@
 				display: inline-block;
 				width: 100px;
 				background-color: $font;
-				margin-left: -1em;
+				margin-left: -5px;
 			}; //currency
-			.currencypinned{
+			.namepinned{
 				background-color: $primary;
 				border-color: $primary;
+				font-weight: $heavy;
+				@include BottomRightDropShadow;
 				@include transition(.5s);
 			};
-			.value{
+			.nameincrease{
+				@include nameincrease;
+			};
+			.namedecrease{
+				@include namedecrease;
+			};
+			.amount{
 				text-align: right;
 				height: 1em;
 				border-radius: 10px 0px 0px 10px; 
@@ -174,9 +227,18 @@
 				border-style: solid;
 				border-width: 2px;
 				border-color: $font;
-			}; //value
-			.valuepinned{
+			}; //amount
+			.amountpinned{
 				border-color: $primary;
+				font-weight: $heavy;
+				@include BottomRightDropShadow;
+				@include transition(.5s);
+			};
+			.amountincrease{
+				@include amountincrease;
+			};
+			.amountdecrease{
+				@include amountdecrease;
 			};
 		}; // ticker
 	}; // results

@@ -17,6 +17,10 @@ export class ContentsComponent implements OnInit{
 
 
   // Variables for front end
+
+ instructions: boolean = false;
+ instructionsLabel: string = "What is this?";
+ pageTitle: string = "Cryptocheck.io";
  cryptoSelected : boolean = false;
  regSelected : boolean = false;
  step2AOptions : any[] = [
@@ -41,6 +45,18 @@ currencyExchange:any[] = [];
 
 interval: any;
 navIsFixed: boolean;
+amountnew: number;
+
+increase(amount: number){
+  this.amountnew = amount +1.0;
+  console.log(amount);
+  console.log(this.amountnew);
+}
+decrease(amount: number){
+  this.amountnew = amount -1.0;
+  console.log(amount);
+  console.log(this.amountnew);
+}
 
   constructor( private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title ) { 
     
@@ -78,12 +94,26 @@ navIsFixed: boolean;
       }//end the for loop
 
     }
+    pinnedCoinAmount: string ;
+    pinnedCoinName: string ;
     pinnedCoin: string ;
-    pinTitle(coinresult: number){
-      this.pinnedCoin = coinresult.toString();
+    pinTitle(amount: number, name: string){
+      if(amount){
+      this.pinnedCoinAmount = amount.toString();
+      this.pinnedCoinName = name.toString();
+      this.pinnedCoin = this.pinnedCoinName + " - " + this.pinnedCoinAmount;
       this.setTitle(this.pinnedCoin);
+    }
   }
     setTitle( newTitle: string) {
-    this.titleService.setTitle( this.pinnedCoin);
-} 
+    this.titleService.setTitle( newTitle );
+  } 
+    instructionsToggle(){
+      if(this.instructions){
+        this.instructionsLabel = "Close Instructions";
+      }
+      else{
+        this.instructionsLabel = "What is this?";
+      }
+    }
 }

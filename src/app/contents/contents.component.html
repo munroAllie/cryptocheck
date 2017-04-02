@@ -2,7 +2,14 @@
 <section class="contents" [ngClass]="{sticky: navIsFixed}">
 	<!-- Instructions -->
 	<div class="instructions">
-		<h2>Check the value of your currency, follow these <b>three</b> steps:</h2>
+
+		<p><span>Welcome to Cryptocheck</span>, 
+			<br> 
+				This application is <span>a free to use tool </span> for monitoring the current value of your crypocurrency and what your holdings can translate to.
+			<br>
+				Check the value of your currency, <span>follow these three steps </span>:
+		</p>
+		<hr>
 		<!--><button (click) = "getCurrentTicker('BTC','BBR')">Click Here to get the current time</button><-->
 	</div>
 	<!-- Step One -->
@@ -55,11 +62,36 @@
 <hr>
 <div class="whatyouhave">
 	<h2>You Could Have...</h2>
+	<div class="pinningInstructions" (click)="instructions = !instructions; instructionsToggle()">
+		<i class="material-icons">gps_not_fixed</i>
+		<span>{{ instructionsLabel }}</span>
+	</div>
+	<div class="explanation" *ngIf="instructions">
+		<div class="iconwrapper">
+			<i class="material-icons">gps_not_fixed</i>
+		</div>
+		<div class="explanationwrapper">
+			<p>This button will allow you to <span> link </span> the selected currency to your browser title. This will allow you to leave the site will being able to watch the value of your selected at a glance.</p>
+		</div>
+	</div>
 </div>
-<div class="ticker" *ngFor="let coinresult of coinResults">
-	<div class="pin" (click)="pinTitle(coinresult.amount)"><i class="material-icons" *ngIf="pinnedCoin != coinresult.amount">gps_not_fixed</i><i class="material-icons selectedCoin" *ngIf="pinnedCoin === coinresult.amount">gps_fixed</i></div>
-	<div class="value" [ngClass]="{valuepinned: pinnedCoin === coinresult.amount }">${{coinresult.amount}}</div>
-	<div class="currency" [ngClass]="{currencypinned: pinnedCoin === coinresult.amount }">{{coinresult.name}}</div>
+<div class="ticker" *ngFor="let coinresult of coinResults; let i = index;">
+	<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name)">
+		<i class="material-icons" *ngIf="pinnedCoinAmount != coinresult.amount">gps_not_fixed</i>
+		<i class="material-icons selectedCoin" *ngIf="pinnedCoinAmount === coinresult.amount">gps_fixed</i>
+	</div>
+
+	<div class="amount" [ngClass]="{amountpinned: pinnedCoinAmount === coinresult.amount, 
+									amountincrease: coinresult.amount < amountnew,
+									amountdecrease: coinresult.amount > amountnew}">
+									{{coinresult.amount}}
+	</div>
+	<div class="name" [ngClass]="{	namepinned: pinnedCoinAmount === coinresult.amount, 
+									nameincrease: coinresult.amount < amountnew,
+									namedecrease: coinresult.amount > amountnew}">
+									{{coinresult.name}}
+	</div>
+
 	
 </div>
 </section>
