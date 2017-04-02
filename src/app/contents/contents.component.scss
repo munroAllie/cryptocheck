@@ -159,74 +159,77 @@
 			}; // explanation
 		}; // what you have
 		.ticker{
-			margin-top: 1em;
+			
 			display: inline-block;
 			vertical-align: top;
 			width: 100%;
 			font: $paragraph;
-			.pin{
-				display: inline-block;
-				i:hover{
-					color: $primary;
-					cursor: pointer;
-				} //i hover
-				.selectedCoin{
-					color: $primary;
-				} // selected coin
-				.selectedCoin:hover{
-					cursor: default;
-				}; // selected coin hover
-			} // pin
-			.name{
-				color: $white;
-				height: 1em;
-				padding: 0.5em;
-				padding-left: 1em;
-				border-style: solid;
-				border-width: 2px;
-				border-color: $font;
-				border-radius: 0px 10px 10px 0px; 
-				display: inline-block;
-				width: 100px;
-				background-color: $font;
-				margin-left: -5px;
-			}; //name
-			.namepinned{
-				background-color: $primary;
-				border-color: $primary;
-				font-weight: $heavy;
-				@include BottomRightDropShadow;
-				@include transition(.5s);
-			}; // name pinned
-			.nameincrease{
-				@include nameincrease;
-			}; // name increase
-			.namedecrease{
-				@include namedecrease;
-			}; // name decrease
-			.amount{
-				text-align: right;
-				height: 1em;
-				border-radius: 10px 0px 0px 10px; 
-				display: inline-block;
-				padding: 0.5em;
-				padding-right: 1.5em;
-				width: 280px;
-				border-style: solid;
-				border-width: 2px;
-				border-color: $font;
-			}; //amount
-			.amountpinned{
-				border-color: $primary;
-				font-weight: $heavy;
-				@include BottomRightDropShadow;
-				@include transition(.5s);
-			}; // amout pinned
-			.amountincrease{
-				@include amountincrease;
-			}; // amount increase
-			.amountdecrease{
-				@include amountdecrease;
-			}; // amount decrease
+			.wrapper{
+				margin-top: 1em;
+				.pin{
+					display: inline-block;
+					i:hover{
+						color: $primary;
+						cursor: pointer;
+					} //i hover
+					.selectedCoin{
+						color: $primary;
+					} // selected coin
+					.selectedCoin:hover{
+						cursor: default;
+					}; // selected coin hover
+				} // pin
+				.name{
+					color: $white;
+					height: 1em;
+					padding: 0.5em;
+					padding-left: 1em;
+					border-style: solid;
+					border-width: 2px;
+					border-color: $font;
+					border-radius: 0px 10px 10px 0px; 
+					display: inline-block;
+					width: 100px;
+					background-color: $font;
+					margin-left: -5px;
+				}; //name
+				.namepinned{
+					background-color: $primary;
+					border-color: $primary;
+					font-weight: $heavy;
+					@include BottomRightDropShadow;
+					@include transition(.5s);
+				}; // name pinned
+				.nameincrease{
+					@include nameincrease;
+				}; // name increase
+				.namedecrease{
+					@include namedecrease;
+				}; // name decrease
+				.amount{
+					text-align: right;
+					height: 1em;
+					border-radius: 10px 0px 0px 10px; 
+					display: inline-block;
+					padding: 0.5em;
+					padding-right: 1.5em;
+					width: 280px;
+					border-style: solid;
+					border-width: 2px;
+					border-color: $font;
+				}; //amount
+				.amountpinned{
+					border-color: $primary;
+					font-weight: $heavy;
+					@include BottomRightDropShadow;
+					@include transition(.5s);
+				}; // amout pinned
+				.amountincrease{
+					@include amountincrease;
+				}; // amount increase
+				.amountdecrease{
+					@include amountdecrease;
+				}; // amount decrease
+			};
 		}; // ticker
 	}; // results
