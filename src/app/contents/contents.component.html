@@ -2,14 +2,7 @@
 <section class="contents" [ngClass]="{sticky: navIsFixed}">
 	<!-- Instructions -->
 	<div class="instructions">
-
-		<p><span>Welcome to Cryptocheck</span>, 
-			<br> 
-				This application is <span>a free to use tool </span> for monitoring the current value of your crypocurrency and what your holdings can translate to.
-			<br>
-				Check the value of your currency, <span>follow these three steps </span>:
-		</p>
-		<hr>
+		<h2>Check the value of your currency, follow these <b>three</b> steps:</h2>
 		<!--><button (click) = "getCurrentTicker('BTC','BBR')">Click Here to get the current time</button><-->
 	</div>
 	<!-- Step One -->
@@ -67,20 +60,14 @@
 <section class="results" *ngIf="holdings">
 <hr>
 <div class="whatyouhave">
+	<img src="../assets/images/questionmark.svg" >
 	<h2>You Could Have...</h2>
-	<div class="pinningInstructions" (click)="instructions = !instructions; instructionsToggle()">
-		<i class="material-icons">gps_not_fixed</i>
-		<span>{{ instructionsLabel }}</span>
-	</div>
-	<div class="explanation" *ngIf="instructions">
-		<div class="iconwrapper">
-			<i class="material-icons">gps_not_fixed</i>
-		</div>
-		<div class="explanationwrapper">
-			<p>This button will allow you to <span> link </span> the selected currency to your browser title. This will allow you to leave the site will being able to watch the value of your selected at a glance.</p>
-		</div>
-	</div>
 </div>
+
+<div class="ticker" *ngFor="let coinresult of coinResults">
+	<div class="pin" (click)="pinTitle(coinresult.amount)"><img src="../assets/images/target.svg"></div>
+	<div class="currency">{{coinresult.name}}</div>
+	<div class="value">${{coinresult.amount}}</div>
 <div class="ticker" *ngFor="let coinresult of coinResults; let i = index;">
 	<div class="wrapper" *ngIf="coinresult.name != step2Selection">
 		<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name);">
@@ -100,6 +87,6 @@
 		</div>
 	</div>
 
-	
+
 </div>
 </section>

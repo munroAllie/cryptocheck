@@ -4,8 +4,16 @@
 	@include container;
 	margin-left: 1em;
 	.instructions{
+		@include floatinLeft(0s);
 		margin-top: 1em;
+		color: $font;
 		font: $paragraph;
+
+		h2{
+			margin: .5em 0em;
+		};
+	}; // instructions
+
 		p{
 			line-height: 1.5em;
 			span{
@@ -13,6 +21,7 @@
 			} // span
 		} // p
 	} // instructions
+
 	.stepOne, .stepTwo, .stepThree{
 		display: block;
 		margin-bottom: 1em;
@@ -99,8 +108,11 @@
 	}; // step active
 }; // contents
 .sticky{
+
+
 	margin-top: 125px; 
 }; // sticky
+
 @import '../../styles.scss';
 	.results{
 		@include floatin;
@@ -110,6 +122,23 @@
 		.whatyouhave{
 			@include clearfix;
 			display: block;
+
+			vertical-align: middle;
+			img{
+				padding-top: 1em;
+				display: inline-block;
+				width: 32px;
+			}; // img
+			h2{
+				display: inline-block;
+				font: $paragraph;
+			}; //h2
+		}; // results
+		.ticker{
+			
+			@include clearfix;
+			margin-top: 1em;
+
 			.pinningInstructions{
 				margin-top: 1em;
 				font: $paragraph;
@@ -164,6 +193,32 @@
 			vertical-align: top;
 			width: 100%;
 			font: $paragraph;
+
+			.currency{
+				color: $white;
+				height: 1em;
+				padding: 0.5em;
+				padding-left: 1em;
+				border-style: solid;
+				border-width: 2px;
+				border-color: $font;
+				border-radius: 10px 0px 0px 10px; 
+				display: inline-block;
+				width: 100px;
+				background-color: $font;
+			}; //currency
+			.value{
+				height: 1em;
+				margin-left: -10px;
+				border-radius: 0px 10px 10px 0px; 
+				display: inline-block;
+				padding: 0.5em;
+				width: 280px;
+				border-style: solid;
+				border-width: 2px;
+				border-color: $font;
+			}; //value
+
 			.wrapper{
 				margin-top: 1em;
 				.pin{
@@ -231,5 +286,6 @@
 					@include amountdecrease;
 				}; // amount decrease
 			};
+
 		}; // ticker
 	}; // results

@@ -3,6 +3,8 @@
 	width: 100%;
 	padding: .5em;
 	background-color: $primary;
+
+	
 	.brandWrapper{
 		display: inline-block;
 		max-width: 30%;
@@ -25,22 +27,19 @@
 .sticky{
 	position: fixed;
 	background: $accent;
-	height: 30px;
+	height: 20px;
 	top: 0px;
 	z-index: 1;
-	-webkit-box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.32);
-	-moz-box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.32);
-	box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.32);
-	@include transition(.5s);
+	-webkit-box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
+	-moz-box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
+	box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
+	@include transition(.25s);
 	.brandWrapper{
-		height: inherit;
-		padding: 0;
 		.brand{
-			width: 25px;
-			height: 25px;
+			width: 20px;
 		}
 		.brandTitle{
-			font-size: 1.25em;
+			font-size: 1em;
 		}
 	}
 }
