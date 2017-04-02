@@ -3,6 +3,9 @@ import { Ticker } from '../TickerType';
 import { ConversionService } from '../Conversion.service';
 import {Observable} from 'rxjs/Rx';
 import {resultsType} from './resultsTypeInterface';
+import { Title }     from '@angular/platform-browser';
+import { WindowScrollService } from '../window-scroll.service';
+
 @Component({
   selector: 'app-contents',
   templateUrl: './contents.component.html',
@@ -34,12 +37,21 @@ coins: any[] = ["BTC_ETH", "BTC_DASH"];
 currencies: any[] = ["CAD"];
 ticker: Ticker[];
 coinResults: resultsType[] =[]; 
-currencyExchange:any[] = [];   
+currencyExchange:any[] = [];
 
-  constructor( private conversionService: ConversionService ) { 
+interval: any;
+navIsFixed: boolean;
+
+  constructor( private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title ) { 
     
   }
     ngOnInit(){
+   this.interval = setInterval(() => {
+        this.windowscrollservice.onWindowScroll() ;
+        this.navIsFixed = this.windowscrollservice.navIsFixed;
+    }, 10);
+
+
       this.conversionService.getFullTicker().subscribe((res) => {this.ticker = res;
       
       for(var j = 0; j<= this.coins.length-1; j++)
@@ -66,5 +78,12 @@ currencyExchange:any[] = [];
       }//end the for loop
 
     }
+    pinTitle(coinresult: number){
+      setTitle( newTitle: string) {
+      this.titleService.setTitle( this.holdings.toString() );
+  }
+
+    }
+    
   } 
 

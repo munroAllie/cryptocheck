@@ -1,14 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import {ConversionService} from 'app/Conversion.service';
+import { WindowScrollService } from './window-scroll.service';
 import { AppComponent } from './app.component';
 import { ContentsComponent } from './contents/contents.component';
-
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 @NgModule({
@@ -24,7 +23,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpModule,
     MaterialModule
   ],
-  providers: [ConversionService],
+  providers: [ConversionService, WindowScrollService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

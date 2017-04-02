@@ -1,5 +1,5 @@
 <!--Content -->
-<section class="contents">
+<section class="contents" [ngClass]="{sticky: navIsFixed}">
 	<!-- Instructions -->
 	<div class="instructions">
 		<h2>Check the value of your currency, follow these <b>three</b> steps:</h2>
@@ -31,7 +31,7 @@
 			<option value="default">make a selection...</option>
 		</select>
 		<!-- If Crypto Currency checked in Step 1 -->
-		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="cryptoSelected" [(ngModel)]="step2Selection" (ngModelChange)="youHave(); youCouldHave()" >
+		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="cryptoSelected" [(ngModel)]="step2Selection">
 			<option 
 			*ngFor="let step2AOption of step2AOptions" 
 			value="{{step2AOption.name}}">
@@ -39,7 +39,7 @@
 			</option>
 		</select>
 		<!-- If Regular Currency selected in Step 1 -->
-		<select name="regcurrency" class="stepTwoDropdown" *ngIf="regSelected" [(ngModel)]="step2Selection" (ngModelChange)="youHave(); youCouldHave()">
+		<select name="regcurrency" class="stepTwoDropdown" *ngIf="regSelected" [(ngModel)]="step2Selection">
 			<option *ngFor="let step2BOption of step2BOptions">{{step2BOption.name}}</option>
 		</select>
 		<hr>
@@ -47,7 +47,7 @@
 	<!-- Step Three -->
 	<div class="stepThree" [ngClass]="{Active: step2Selection}">
 		<h1>Step 3 - </h1><h2>Enter Your Holdings</h2>
-		<input type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings" (ngModelChange)="youHave(); youCouldHave()">
+		<input type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings" (ngModelChange)="setTitle()">
 	</div>	
 </form>
 
@@ -56,19 +56,12 @@
 <section class="results" *ngIf="holdings">
 <hr>
 <div class="whatyouhave">
-	<img src="../assets/images/questionmark.svg">
-	<h2>You Have...</h2>
+	<img src="../assets/images/questionmark.svg" >
+	<h2>You Could Have...</h2>
 </div>
 <div class="ticker" *ngFor="let coinresult of coinResults">
+	<div class="pin" (click)="pinTitle(coinresult.amount)"><img src="../assets/images/target.svg"></div>
 	<div class="currency">{{coinresult.name}}</div>
 	<div class="value">${{coinresult.amount}}</div>
-</div>
-<div class="whatyouhave">
-	<img src="../assets/images/questionmark.svg">
-	<h2>You could Buy...</h2>
-</div>
-<div class="ticker" *ngFor="let youcouldhave of youcouldhaves">
-	<div class="currency">{{youcouldhave.name}}</div>
-	<div class="value">${{youcouldhave.amount}}</div>
 </div>
 </section>

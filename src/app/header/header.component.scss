@@ -3,15 +3,17 @@
 	width: 100%;
 	padding: .5em;
 	background-color: $primary;
-	@include VerticleDropShadow;
+
+	
 	.brandWrapper{
 		display: inline-block;
+		max-width: 30%;
+		min-width: 300px;
 		height: 40px;
 		padding: 5px 0;
-		
 		.brand{
-			width: 50px;
-			height: auto;
+			width: 40px;
+			height: 40px;
 		}; //brand
 		.brandTitle{
 			vertical-align: top;
@@ -19,6 +21,17 @@
 			font: $brand;
 			display: inline-block;
 			color: $white;
-		}; //h1
-	} // brandwrapper
-}; //md-toolbar
+		}; //brand title
+	} // // brand wrapper
+}; //header bar
+.sticky{
+	position: fixed;
+	height: 20px;
+	top: 0px;
+	z-index: 1;
+	-webkit-box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
+	-moz-box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
+	box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
+	@include transition(1s);
+	 	
+	}
