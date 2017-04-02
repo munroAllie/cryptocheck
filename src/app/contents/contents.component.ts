@@ -195,6 +195,7 @@ decrease(amount: number){
       this.pinnedCoinName = name.toString();
       this.pinnedCoin = this.pinnedCoinName + " - " + this.pinnedCoinAmount;
       this.setTitle(this.pinnedCoin);
+      console.log(this.pinnedCoinAmount);
     }
   }
     setTitle( newTitle: string) {

@@ -84,15 +84,15 @@
 <div class="ticker" *ngFor="let coinresult of coinResults; let i = index;">
 	<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name)">
 		<i class="material-icons" *ngIf="pinnedCoinAmount != coinresult.amount">gps_not_fixed</i>
-		<i class="material-icons selectedCoin" *ngIf="pinnedCoinAmount === coinresult.amount">gps_fixed</i>
+		<i class="material-icons selectedCoin" *ngIf="pinnedCoinAmount === coinresult.amount.toString();">gps_fixed</i>
 	</div>
 
-	<div class="amount" [ngClass]="{amountpinned: pinnedCoinAmount === coinresult.amount, 
+	<div class="amount" [ngClass]="{amountpinned: pinnedCoinAmount === coinresult.amount.toString(), 
 									amountincrease: coinresult.amount < amountnew,
 									amountdecrease: coinresult.amount > amountnew}">
 									{{coinresult.amount}}
 	</div>
-	<div class="name" [ngClass]="{	namepinned: pinnedCoinAmount === coinresult.amount, 
+	<div class="name" [ngClass]="{	namepinned: pinnedCoinAmount === coinresult.amount.toString(), 
 									nameincrease: coinresult.amount < amountnew,
 									namedecrease: coinresult.amount > amountnew}">
 									{{coinresult.name}}
