@@ -8,6 +8,74 @@
 	opacity: 1;
 	}
 }
+
+@keyframes explanation{
+	0%{
+		opacity: 0.00;
+	} // 0%
+	100%{
+		opacity: 1;
+	} // 100%
+} // instructions
+
+@keyframes amountincrease{
+	0%{
+	}
+	50%{
+		background-color: $good;
+		border-color: $good;
+		opacity: 0.5;
+	}
+	100%{
+		background-color: $white;
+		border-color: $font;
+	}
+} //amount icrease
+
+@keyframes amountdecrease{
+	0%{
+	}
+	50%{
+		background-color: $bad;
+		border-color: $bad;
+		opacity: 0.5;
+	}
+	100%{
+		background-color: $white;
+		border-color: $font;
+	}
+} //amount decrease
+
+
+@keyframes nameincrease{
+	0%{
+	}
+	50%{
+		background-color: $good;
+		border-color: $good;
+		opacity: 0.5;
+	}
+	100%{
+		background-color: $font;
+		border-color: $font;
+	}
+} // name increase
+
+
+@keyframes namedecrease{
+	0%{
+	}
+	50%{
+		background-color: $bad;
+		border-color: $bad;
+		opacity: 0.5;
+	}
+	100%{
+		background-color: $font;
+		border-color: $font;
+	}
+} // name decrease
+
 @keyframes fadeHalf{
 	0%{
 	opacity: 0;
@@ -37,6 +105,31 @@
 	  opacity: 1;
 	  margin-top: 0em; 
   };
+}
+
+@mixin explanation{
+	animation-name: explanation;
+    animation-duration:1s;
+}
+
+@mixin amountincrease{
+	animation-name: amountincrease;
+    animation-duration:1s;
+}
+
+@mixin nameincrease{
+	animation-name: nameincrease;
+    animation-duration:1s;
+}
+
+@mixin amountdecrease{
+	animation-name: amountdecrease;
+    animation-duration:1s;
+}
+
+@mixin namedecrease{
+	animation-name: namedecrease;
+    animation-duration:1s;
 }
 
 @mixin floatin{

@@ -19,11 +19,18 @@ export class ContentsComponent implements OnInit{
 
 
   // Variables for front end
+
+
+ instructions: boolean = false;
+ instructionsLabel: string = "What is this?";
+ pageTitle: string = "Cryptocheck.io";
+
+
  cryptoSelected : boolean = false; //Determines if crypto is selected
  regSelected : boolean = false; // Determines if currenecy s selected
  
  //ADD IN ANY EXTRA CURRENCIES OR COINS YOU WANT (ALSO ADD IT IN THE COINS AND CURRENCY ARRAY BELOW)
- //ALSO GO TO THE CONVERTNAME FUCTION AND ADD IN THE APPROPRIATE NAME (VERY BOTTOM OF FILE)
+ //ALSO GO TO THE CONVERTNAME FUCTION AND ADD IN THE APPROPRIATE NAME (VERY BOTTOM OF FILE
  step2AOptions : any[] = [
       {name: "make a selection..."},
       {name: "DASH"},
@@ -35,6 +42,8 @@ export class ContentsComponent implements OnInit{
       {name: "CAD"},
       {name: "USDT"} 
     ]; // step2BOptions
+
+
 
  step2Selection: string; //Holds the value of the currency you have selected.
  holdings: number = 10; //The amount of money you have inputed.
@@ -49,6 +58,18 @@ coinResults: coinResultsType[] = []; //Holds all the names and converted values 
 
 interval: any;
 navIsFixed: boolean;
+amountnew: number;
+
+increase(amount: number){
+  this.amountnew = amount +1.0;
+  console.log(amount);
+  console.log(this.amountnew);
+}
+decrease(amount: number){
+  this.amountnew = amount -1.0;
+  console.log(amount);
+  console.log(this.amountnew);
+}
 
   constructor( private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title ) { 
     
@@ -161,15 +182,33 @@ navIsFixed: boolean;
         return('EUR');
 
         }//END SWITCH
-    }//END CONVERT 
+
+    }//END CONVERT
+    
+    pinnedCoinAmount: string ;
+    pinnedCoinName: string ;
 
     pinnedCoin: string ;
-    pinTitle(coinresult: number){
-      this.pinnedCoin = coinresult.toString();
+    pinTitle(amount: number, name: string){
+      if(amount){
+      this.pinnedCoinAmount = amount.toString();
+      this.pinnedCoinName = name.toString();
+      this.pinnedCoin = this.pinnedCoinName + " - " + this.pinnedCoinAmount;
       this.setTitle(this.pinnedCoin);
+    }
   }
     setTitle( newTitle: string) {
-    this.titleService.setTitle( this.pinnedCoin);
-} 
+    this.titleService.setTitle( newTitle );
+  } 
+    instructionsToggle(){
+      if(this.instructions){
+        this.instructionsLabel = "Close Instructions";
+      }
+      else{
+        this.instructionsLabel = "What is this?";
+      }
+    }
 }
+
+
 
