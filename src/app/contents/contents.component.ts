@@ -43,8 +43,6 @@ export class ContentsComponent implements OnInit{
       {name: "USDT"} 
     ]; // step2BOptions
 
- step2Selection: string;
- holdings: number = 10;
 
 
  step2Selection: string; //Holds the value of the currency you have selected.
@@ -186,9 +184,6 @@ decrease(amount: number){
         }//END SWITCH
     }//END CONVERT
     
-  } 
-
-    }
     pinnedCoinAmount: string ;
     pinnedCoinName: string ;
     pinnedCoin: string ;
@@ -201,7 +196,6 @@ decrease(amount: number){
     }
   }
     setTitle( newTitle: string) {
-
     this.titleService.setTitle( newTitle );
   } 
     instructionsToggle(){
@@ -214,7 +208,5 @@ decrease(amount: number){
     }
 }
 
-    this.titleService.setTitle( this.pinnedCoin);
-} 
-}
+
 
