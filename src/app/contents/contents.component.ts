@@ -46,7 +46,7 @@ export class ContentsComponent implements OnInit{
 
 
  step2Selection: string; //Holds the value of the currency you have selected.
- holdings: number = 10; //The amount of money you have inputed.
+ holdings: number; //The amount of money you have inputed.
 
 // DONT FORGET TO ADD THE COIN OR CURRENCY BELOW IN THE PROPER FORMAT (CHECK THE TICKER OR CURRENCY EXCHANGE FOR FORMAT)
 coins: any[] = ["BTC_ETH", "BTC_DASH", 'BTC_BTC' ]; //holds the coin as string in the format of the ticker name
@@ -54,7 +54,7 @@ currencies: any[] = ["CAD", "EUR", 'USDT']; //hold the currencies as a string in
 ticker: Ticker[]; // Holds the exchange values for the coins
 currencyExchange: ExchangeType[] = [];   //Holds the exchange values for the currencies
 coinResults: coinResultsType[] = []; //Holds all the names and converted values (DISPLAY THIS IN THE DOM)
-
+oldCoinResults: coinResultsType[] = [];
 
 interval: any;
 navIsFixed: boolean;
@@ -75,11 +75,13 @@ decrease(amount: number){
     
   }
     ngOnInit(){
-   this.interval = setInterval(() => {
+         this.interval = setInterval(() => {
         this.windowscrollservice.onWindowScroll() ;
         this.navIsFixed = this.windowscrollservice.navIsFixed;
     }, 10);
-
+     setInterval(() => {
+               this.convert();
+                },1000);
       setInterval(()=> 
       {
 
@@ -98,19 +100,19 @@ decrease(amount: number){
                               low24hr: 1
                                };
       
-      }); //end the subscribe function                                                       
+       //end the subscribe function                                                       
+    });
      this.conversionService.getFullCurrencyExchange().subscribe( (res) => {this.currencyExchange = res["rates"];
      this.currencyExchange['USDT'] = 1;
-    })
-      this.convert();//end subscribe fuction
-      },1000);
-
+    });
+    },1000);
+      
     }// End OnInit
 
-  
+
     convert()
     { 
-      
+      this.oldCoinResults = this.coinResults;
       this.coinResults = [];
       if(this.cryptoSelected)
       {
@@ -120,8 +122,8 @@ decrease(amount: number){
           var tempName = this.currencies[i] as string;
           this.coinResults.push(
             {name: this.convertName(tempName as string),
-            amount: this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]}
-          )
+            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100}
+          );
         }
         //convert all the crypto to crypto
         for(var i = 0 ; i <= this.coins.length - 1; i++)
@@ -130,8 +132,8 @@ decrease(amount: number){
           
           this.coinResults.push(
             {name: this.convertName(tempName as string), 
-             amount: this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last
-           });  
+             amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last*100000000)/100000000
+           })
            
         }
       }
@@ -143,7 +145,7 @@ decrease(amount: number){
              var tempName = this.currencies[i] as string;
             this.coinResults.push(
                               {name: this.convertName(tempName as string),
-                               amount: this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]
+                               amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]*100)/100
                               })
              }
             
@@ -153,13 +155,15 @@ decrease(amount: number){
               var tempName = this.coins[i] as string;
               this.coinResults.push(
                {name: this.convertName(tempName as string), 
-                amount: this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last
+                amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last*100000000)/100000000
 
            });  
            
-        }
-
-        } 
+        } // end for loop
+        
+      }// End if Statement 
+     
+      
     }// END CONVERT
     convertName(name: string)
     {
