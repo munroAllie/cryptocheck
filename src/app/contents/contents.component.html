@@ -63,9 +63,30 @@
 	<img src="../assets/images/questionmark.svg" >
 	<h2>You Could Have...</h2>
 </div>
+
 <div class="ticker" *ngFor="let coinresult of coinResults">
 	<div class="pin" (click)="pinTitle(coinresult.amount)"><img src="../assets/images/target.svg"></div>
 	<div class="currency">{{coinresult.name}}</div>
 	<div class="value">${{coinresult.amount}}</div>
+<div class="ticker" *ngFor="let coinresult of coinResults; let i = index;">
+	<div class="wrapper" *ngIf="coinresult.name != step2Selection">
+		<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name);">
+			<i class="material-icons" *ngIf="pinnedCoinAmount != coinresult.amount">gps_not_fixed</i>
+			<i class="material-icons selectedCoin" *ngIf="pinnedCoinAmount === coinresult.amount;">gps_fixed</i>
+		</div>
+
+		<div class="amount" [ngClass]="{amountpinned: pinnedCoinAmount === coinresult.amount, 
+										amountincrease: coinresult.amount < amountnew,
+										amountdecrease: coinresult.amount > amountnew}">
+										{{coinresult.amount}}
+		</div>
+		<div class="name" [ngClass]="{	namepinned: pinnedCoinAmount === coinresult.amount, 
+										nameincrease: coinresult.amount < amountnew,
+										namedecrease: coinresult.amount > amountnew}">
+										{{coinresult.name}}
+		</div>
+	</div>
+
+
 </div>
 </section>
