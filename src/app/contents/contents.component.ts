@@ -182,10 +182,12 @@ decrease(amount: number){
         return('EUR');
 
         }//END SWITCH
+
     }//END CONVERT
     
     pinnedCoinAmount: string ;
     pinnedCoinName: string ;
+
     pinnedCoin: string ;
     pinTitle(amount: number, name: string){
       if(amount){
