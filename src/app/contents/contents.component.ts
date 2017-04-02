@@ -4,6 +4,9 @@ import { ConversionService } from '../Conversion.service';
 import {Observable} from 'rxjs/Rx';
 import {coinResultsType} from './resultsTypeInterface';
 import {ExchangeType} from './ExchangeTypeInterface';
+import { Title }     from '@angular/platform-browser';
+import { WindowScrollService } from '../window-scroll.service';
+
 
 @Component({
   selector: 'app-contents',
@@ -32,6 +35,7 @@ export class ContentsComponent implements OnInit{
       {name: "CAD"},
       {name: "USDT"} 
     ]; // step2BOptions
+
  step2Selection: string; //Holds the value of the currency you have selected.
  holdings: number = 10; //The amount of money you have inputed.
 
@@ -42,12 +46,20 @@ ticker: Ticker[]; // Holds the exchange values for the coins
 currencyExchange: ExchangeType[] = [];   //Holds the exchange values for the currencies
 coinResults: coinResultsType[] = []; //Holds all the names and converted values (DISPLAY THIS IN THE DOM)
 
-   
 
-  constructor( private conversionService: ConversionService ) { 
+interval: any;
+navIsFixed: boolean;
+
+  constructor( private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title ) { 
     
   }
     ngOnInit(){
+   this.interval = setInterval(() => {
+        this.windowscrollservice.onWindowScroll() ;
+        this.navIsFixed = this.windowscrollservice.navIsFixed;
+    }, 10);
+
+
       this.conversionService.getFullTicker().subscribe((res) => {this.ticker = res;
       this.ticker['BTC_BTC'] = {
                               id: 1,
@@ -130,6 +142,7 @@ coinResults: coinResultsType[] = []; //Holds all the names and converted values 
       case 'BTC_BTC':
         return ('Bitcoin');
 
+
       case 'DASH':
         return('BTC_DASH');
       case 'BTC_DASH':
@@ -151,4 +164,15 @@ coinResults: coinResultsType[] = []; //Holds all the names and converted values 
     }//END CONVERT
     
   } 
+
+    }
+    pinnedCoin: string ;
+    pinTitle(coinresult: number){
+      this.pinnedCoin = coinresult.toString();
+      this.setTitle(this.pinnedCoin);
+  }
+    setTitle( newTitle: string) {
+    this.titleService.setTitle( this.pinnedCoin);
+} 
+}
 
