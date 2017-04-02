@@ -161,11 +161,8 @@ navIsFixed: boolean;
         return('EUR');
 
         }//END SWITCH
-    }//END CONVERT
-    
-  } 
+    }//END CONVERT 
 
-    }
     pinnedCoin: string ;
     pinTitle(coinresult: number){
       this.pinnedCoin = coinresult.toString();
