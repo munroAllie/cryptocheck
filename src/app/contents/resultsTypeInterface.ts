@@ -1,4 +1,4 @@
-export interface resultsType{
+export interface coinResultsType{
    name: string; 
-   amount: Number;
+   amount: number;
 }
