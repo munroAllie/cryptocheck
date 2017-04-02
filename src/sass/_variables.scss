@@ -5,10 +5,12 @@ $white: #ffffff;
 $gray: #ebebeb;
 $accent: #A9A9A9;
 $font: #2e2e2e;
+$good: #34993C;
+$bad: #993A2F;
 
 $susy:(
 	columns: 12,
-	container: 60em,
+	container: 100%,
 	gutters: 1/4,
 	gutter-position: inside,
 );
