@@ -81,6 +81,7 @@
 		</div>
 	</div>
 </div>
+
 <h1></h1>
 <div class="ticker" *ngFor="let coinresult of coinResults; let oldCoinResults of oldCoinResults; let i = index;">
 	<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name)">
@@ -97,6 +98,7 @@
 									nameincrease: coinresult.amount > oldCoinResults.amount,
 									namedecrease: coinresult.amount < oldCoinResults.amount}">
 									{{coinresult.name}}
+
 	</div>
 	
 

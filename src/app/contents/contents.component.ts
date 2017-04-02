@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Ticker } from '../TickerType'; 
+import { Ticker } from '../TickerType';
 import { ConversionService } from '../Conversion.service';
-import {Observable} from 'rxjs/Rx';
-import {coinResultsType} from './resultsTypeInterface';
-import {ExchangeType} from './ExchangeTypeInterface';
-import { Title }     from '@angular/platform-browser';
+import { Observable } from 'rxjs/Rx';
+import { coinResultsType } from './resultsTypeInterface';
+import { ExchangeType } from './ExchangeTypeInterface';
+import { Title } from '@angular/platform-browser';
 import { WindowScrollService } from '../window-scroll.service';
 
 
@@ -13,17 +13,18 @@ import { WindowScrollService } from '../window-scroll.service';
   templateUrl: './contents.component.html',
   styleUrls: ['./contents.component.scss']
 })
-export class ContentsComponent implements OnInit{
+export class ContentsComponent implements OnInit {
 
-//Will hold the data from the JSON file
+  //Will hold the data from the JSON file
 
 
   // Variables for front end
 
 
- instructions: boolean = false;
- instructionsLabel: string = "What is this?";
- pageTitle: string = "Cryptocheck.io";
+  instructions: boolean = false;
+  instructionsLabel: string = "What is this?";
+  pageTitle: string = "Cryptocheck.io";
+
 
 
  cryptoSelected : boolean = false; //Determines if crypto is selected
@@ -71,9 +72,29 @@ decrease(amount: number){
   console.log(this.amountnew);
 }
 
-  constructor( private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title ) { 
-    
+  // DONT FORGET TO ADD THE COIN OR CURRENCY BELOW IN THE PROPER FORMAT (CHECK THE TICKER OR CURRENCY EXCHANGE FOR FORMAT)
+  coins: any[] = ["BTC_ETH", "BTC_DASH", 'BTC_BTC']; //holds the coin as string in the format of the ticker name
+  currencies: any[] = ["CAD", "EUR", 'USDT']; //hold the currencies as a string in the format of currencyExchange
+  ticker: Ticker[]; // Holds the exchange values for the coins
+  currencyExchange: ExchangeType[] = [];   //Holds the exchange values for the currencies
+  coinResults: coinResultsType[] = []; //Holds all the names and converted values (DISPLAY THIS IN THE DOM)
+
+
+  interval: any;
+  navIsFixed: boolean;
+  amountnew: number;
+
+  increase(amount: number) {
+    this.amountnew = amount + 1.0;
+    console.log(amount);
+    console.log(this.amountnew);
   }
+
+
+  constructor(private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title) {
+
+  }
+        
     ngOnInit(){
          this.interval = setInterval(() => {
         this.windowscrollservice.onWindowScroll() ;
@@ -168,6 +189,7 @@ decrease(amount: number){
     convertName(name: string)
     {
       switch(name){
+
       case 'Bitcoin':
         return ('BTC_BTC');
       case 'BTC_BTC':
@@ -175,12 +197,12 @@ decrease(amount: number){
 
 
       case 'DASH':
-        return('BTC_DASH');
+        return ('BTC_DASH');
       case 'BTC_DASH':
-        return('DASH');
+        return ('DASH');
 
       case 'Etherium':
-        return('BTC_ETH');
+        return ('BTC_ETH');
       case 'BTC_ETH':
         return ('Etherium');
 
@@ -189,35 +211,48 @@ decrease(amount: number){
       case 'CAD':
         return ('CAD');
       case 'EUR':
-        return('EUR');
+        return ('EUR');
 
-        }//END SWITCH
+    }//END SWITCH
 
-    }//END CONVERT
-    
-    pinnedCoinAmount: string ;
-    pinnedCoinName: string ;
+  }//END CONVERT
 
-    pinnedCoin: string ;
-    pinTitle(amount: number, name: string){
-      if(amount){
-      this.pinnedCoinAmount = amount.toString();
-      this.pinnedCoinName = name.toString();
-      this.pinnedCoin = this.pinnedCoinName + " - " + this.pinnedCoinAmount;
-      this.setTitle(this.pinnedCoin);
+  pinnedCoinAmount: number;
+  pinnedCoinName: string;
+  pinnedCoin: string;
+  updateTitle: any;
+
+  pinTitle(amount: number, name: string) {
+    clearInterval(this.updateTitle);
+    this.updateTitle = setInterval(()=>{
+      for(var i = 0; i<= this.coinResults.length; i++){
+        if(name == this.coinResults[i].name){
+          this.pinnedCoinAmount = this.coinResults[i].amount;
+          this.setTitle(this.coinResults[i].name + " - " + this.coinResults[i].amount.toString());
+        }
+      }
+    }, 100);
+  }
+ 
+
+
+    /* this.pinnedCoinAmount = amount.toString();
+     this.pinnedCoinName = name.toString();
+     this.pinnedCoin = this.pinnedCoinName + " - " + this.pinnedCoinAmount;
+     this.setTitle(this.pinnedCoin);
+     console.log(this.pinnedCoinAmount);*/
+  
+  setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
+  instructionsToggle() {
+    if (this.instructions) {
+      this.instructionsLabel = "Close Instructions";
+    }
+    else {
+      this.instructionsLabel = "What is this?";
     }
   }
-    setTitle( newTitle: string) {
-    this.titleService.setTitle( newTitle );
-  } 
-    instructionsToggle(){
-      if(this.instructions){
-        this.instructionsLabel = "Close Instructions";
-      }
-      else{
-        this.instructionsLabel = "What is this?";
-      }
-    }
 }
 
 

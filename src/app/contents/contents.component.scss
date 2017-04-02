@@ -10,9 +10,9 @@
 			line-height: 1.5em;
 			span{
 				font-weight: $heavy;
-			}	
-		}
-	}
+			} // span
+		} // p
+	} // instructions
 	.stepOne, .stepTwo, .stepThree{
 		display: block;
 		margin-bottom: 1em;
@@ -31,8 +31,7 @@
 		.selectionWrapper{
 			display: block;
 			margin-left: -1em;
-			
-		};
+		}; //selection wrapper
 		.cryptoCurrency, .regularCurrency{		
 			@include BottomRightDropShadow;
 			margin-right: 1em;
@@ -48,17 +47,13 @@
 	    	border-width: 2px;
 	    	border-color: rgba(0, 0, 0, 0);
 			text-align: center;
-			
 			cursor: pointer;
 		}; // cryptocurrency
 		.cryptoCurrency:hover, .regularCurrency:hover{
 	    	border-color: $font;
-
 		}; // hover states
 		.active{
 			background-color: $primary;
-			img{
-			};
 		}; // active states
 		img{
 			vertical-align: middle;
@@ -70,20 +65,17 @@
 			margin-top: .25em;
 		}; //h3
 	}; //stepone
-
 	//initialize status of step 2 and three
 	.stepTwo, .stepThree{
 		opacity: 0;
-	};
+	}; // step two step three
 	//animate
 	.stepTwo{
 		@include fadeHalf(0.5s);
-
-	};
+	}; //step two
 	.stepThree{
 		@include fadeHalf(0.75s);
-	};
-
+	}; // step three
 	.stepTwo, .stepThree{
 		.stepTwoDropdown, .stepThreeInput{
 			margin-top: 1em;
@@ -99,17 +91,16 @@
 		.stepThreeInput{
 			width: 400px;
 			padding-left: 10px;
-		}
+		} // step three input
 	}; // step twp dropdown
 	.Active{
 		@include fade(0s);
 		opacity: 1;
-	}; // step Inactive
+	}; // step active
 }; // contents
 .sticky{
-	margin-top: 90px; 
-	
-};
+	margin-top: 125px; 
+}; // sticky
 @import '../../styles.scss';
 	.results{
 		@include floatin;
@@ -131,7 +122,7 @@
 				i{
 					float: left;
 					margin-left: 1em;
-				};
+				}; //i
 				span{
 					margin-left: .5em;
 				}; // span
@@ -142,7 +133,6 @@
 				@include transition(.5s); 
 				cursor: pointer;
 			} // pinning instructions hover
-			
 			.explanation{
 				@include span (6 of 6);
 				font: $paragraph;
@@ -157,88 +147,89 @@
 				@include explanation;
 				span{
 					font-weight: $heavy;
-				};
+				}; // span
 				.iconwrapper{
 					@include clearfix;
 					font-size: 3em;
 					@include span(1 of 6);
-				};
-				.explanatiowrapper{
+				}; // icon wrapper
+				.explanationwrapper{
 					@include span (5 of 6);
-				}
-				
+				} // explanation wrapper
 			}; // explanation
 		}; // what you have
 		.ticker{
-			margin-top: 1em;
+			
 			display: inline-block;
 			vertical-align: top;
 			width: 100%;
 			font: $paragraph;
-			.pin{
-				display: inline-block;
-				i:hover{
-					color: $primary;
-					cursor: pointer;
-				}
-				.selectedCoin{
-					color: $primary;
-					
-				}
-				.selectedCoin:hover{
-					cursor: default;
-				};
-			}
-			.name{
-				color: $white;
-				height: 1em;
-				padding: 0.5em;
-				padding-left: 1em;
-				border-style: solid;
-				border-width: 2px;
-				border-color: $font;
-				border-radius: 0px 10px 10px 0px; 
-				display: inline-block;
-				width: 100px;
-				background-color: $font;
-				margin-left: -5px;
-			}; //currency
-			.namepinned{
-				background-color: $primary;
-				border-color: $primary;
-				font-weight: $heavy;
-				@include BottomRightDropShadow;
-				@include transition(.5s);
-			};
-			.nameincrease{
-				@include nameincrease;
-			};
-			.namedecrease{
-				@include namedecrease;
-			};
-			.amount{
-				text-align: right;
-				height: 1em;
-				border-radius: 10px 0px 0px 10px; 
-				display: inline-block;
-				padding: 0.5em;
-				padding-right: 1.5em;
-				width: 280px;
-				border-style: solid;
-				border-width: 2px;
-				border-color: $font;
-			}; //amount
-			.amountpinned{
-				border-color: $primary;
-				font-weight: $heavy;
-				@include BottomRightDropShadow;
-				@include transition(.5s);
-			};
-			.amountincrease{
-				@include amountincrease;
-			};
-			.amountdecrease{
-				@include amountdecrease;
+			.wrapper{
+				margin-top: 1em;
+				.pin{
+					display: inline-block;
+					i:hover{
+						color: $primary;
+						cursor: pointer;
+					} //i hover
+					.selectedCoin{
+						color: $primary;
+					} // selected coin
+					.selectedCoin:hover{
+						cursor: default;
+					}; // selected coin hover
+				} // pin
+				.name{
+					color: $white;
+					height: 1em;
+					padding: 0.5em;
+					padding-left: 1em;
+					border-style: solid;
+					border-width: 2px;
+					border-color: $font;
+					border-radius: 0px 10px 10px 0px; 
+					display: inline-block;
+					width: 100px;
+					background-color: $font;
+					margin-left: -5px;
+				}; //name
+				.namepinned{
+					background-color: $primary;
+					border-color: $primary;
+					font-weight: $heavy;
+					@include BottomRightDropShadow;
+					@include transition(.5s);
+				}; // name pinned
+				.nameincrease{
+					@include nameincrease;
+				}; // name increase
+				.namedecrease{
+					@include namedecrease;
+				}; // name decrease
+				.amount{
+					text-align: right;
+					height: 1em;
+					border-radius: 10px 0px 0px 10px; 
+					display: inline-block;
+					padding: 0.5em;
+					padding-right: 1.5em;
+					width: 280px;
+					border-style: solid;
+					border-width: 2px;
+					border-color: $font;
+				}; //amount
+				.amountpinned{
+					border-color: $primary;
+					font-weight: $heavy;
+					@include BottomRightDropShadow;
+					@include transition(.5s);
+				}; // amout pinned
+				.amountincrease{
+					@include amountincrease;
+				}; // amount increase
+				.amountdecrease{
+					@include amountdecrease;
+				}; // amount decrease
 			};
 		}; // ticker
 	}; // results
