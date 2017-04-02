@@ -26,12 +26,20 @@
 }; //header bar
 .sticky{
 	position: fixed;
+	background: $accent;
 	height: 20px;
 	top: 0px;
 	z-index: 1;
 	-webkit-box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
 	-moz-box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
 	box-shadow: 0px 9px 20px 1px rgba(0,0,0,0.32);
-	@include transition(1s);
-	 	
+	@include transition(.25s);
+	.brandWrapper{
+		.brand{
+			width: 20px;
+		}
+		.brandTitle{
+			font-size: 1em;
+		}
 	}
+}

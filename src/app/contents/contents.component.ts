@@ -31,7 +31,7 @@ export class ContentsComponent implements OnInit{
       {name: "USD"} 
     ]; // step2BOptions
  step2Selection: string;
- holdings: number = 10;
+ holdings: number;
 
 coins: any[] = ["BTC_ETH", "BTC_DASH"];
 currencies: any[] = ["CAD"];
@@ -78,12 +78,12 @@ navIsFixed: boolean;
       }//end the for loop
 
     }
+    pinnedCoin: string ;
     pinTitle(coinresult: number){
-      setTitle( newTitle: string) {
-      this.titleService.setTitle( this.holdings.toString() );
+      this.pinnedCoin = coinresult.toString();
+      this.setTitle(this.pinnedCoin);
   }
-
-    }
-    
-  } 
-
+    setTitle( newTitle: string) {
+    this.titleService.setTitle( this.pinnedCoin);
+} 
+}

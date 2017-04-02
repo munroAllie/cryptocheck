@@ -14,6 +14,7 @@
 	}; // instructions
 	.stepOne, .stepTwo, .stepThree{
 		display: block;
+		margin-bottom: 1em;
 		h1{
 			display: inline-block;
 			font: $h1;
@@ -29,11 +30,13 @@
 		.selectionWrapper{
 			display: block;
 			margin-left: -1em;
+			
 		};
 		.cryptoCurrency, .regularCurrency{		
 			@include BottomRightDropShadow;
 			margin-right: 1em;
 			margin-left: 1em;
+			margin-top: 1em;
 			display: inline-block;
 			border-radius: 10px;
 			overflow: hidden;
