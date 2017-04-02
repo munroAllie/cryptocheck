@@ -66,3 +66,7 @@
 	animation-fill-mode: forwards;
 }
 
+@mixin transition($time){
+	transition-duration: $time;
+	-webkit-transtion: $time;
+}
