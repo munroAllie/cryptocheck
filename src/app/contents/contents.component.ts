@@ -31,7 +31,7 @@ export class ContentsComponent implements OnInit{
       {name: "USD"} 
     ]; // step2BOptions
  step2Selection: string;
- holdings: number;
+ holdings: number = 10;
 
 coins: any[] = ["BTC_ETH", "BTC_DASH"];
 currencies: any[] = ["CAD"];

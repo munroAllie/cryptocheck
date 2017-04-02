@@ -106,7 +106,7 @@
 	}; // step Inactive
 }; // contents
 .sticky{
-	margin-top: 120px; 
+	margin-top: 90px; 
 	
 };
 @import '../../styles.scss';
@@ -118,11 +118,10 @@
 		.whatyouhave{
 			@include clearfix;
 			display: block;
-			vertical-align: middle;
 			img{
-				padding-top: 1em;
 				display: inline-block;
 				width: 32px;
+				height: 32px;
 			}; // img
 			h2{
 				display: inline-block;
@@ -130,13 +129,21 @@
 			}; //h2
 		}; // results
 		.ticker{
-			
-			@include clearfix;
 			margin-top: 1em;
 			display: inline-block;
 			vertical-align: top;
 			width: 100%;
 			font: $paragraph;
+			.pin{
+				display: inline-block;
+				i:hover{
+					color: $primary;
+					cursor: pointer;
+				}
+				.selectedCoin{
+					color: $primary;
+				}
+			}
 			.currency{
 				color: $white;
 				height: 1em;
@@ -145,21 +152,31 @@
 				border-style: solid;
 				border-width: 2px;
 				border-color: $font;
-				border-radius: 10px 0px 0px 10px; 
+				border-radius: 0px 10px 10px 0px; 
 				display: inline-block;
 				width: 100px;
 				background-color: $font;
+				margin-left: -1em;
 			}; //currency
+			.currencypinned{
+				background-color: $primary;
+				border-color: $primary;
+				@include transition(.5s);
+			};
 			.value{
+				text-align: right;
 				height: 1em;
-				margin-left: -10px;
-				border-radius: 0px 10px 10px 0px; 
+				border-radius: 10px 0px 0px 10px; 
 				display: inline-block;
 				padding: 0.5em;
+				padding-right: 1.5em;
 				width: 280px;
 				border-style: solid;
 				border-width: 2px;
 				border-color: $font;
 			}; //value
+			.valuepinned{
+				border-color: $primary;
+			};
 		}; // ticker
 	}; // results
