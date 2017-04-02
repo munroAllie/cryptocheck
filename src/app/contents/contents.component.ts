@@ -80,7 +80,10 @@ decrease(amount: number){
         this.navIsFixed = this.windowscrollservice.navIsFixed;
     }, 10);
 
+      setInterval(()=> 
+      {
 
+      
       this.conversionService.getFullTicker().subscribe((res) => {this.ticker = res;
       this.ticker['BTC_BTC'] = {
                               id: 1,
@@ -94,14 +97,17 @@ decrease(amount: number){
                               high24hr: 1,
                               low24hr: 1
                                };
-
+      
       }); //end the subscribe function                                                       
      this.conversionService.getFullCurrencyExchange().subscribe( (res) => {this.currencyExchange = res["rates"];
      this.currencyExchange['USDT'] = 1;
-      });
-   
+    })
+      this.convert();//end subscribe fuction
+      },1000);
+
     }// End OnInit
 
+  
     convert()
     { 
       
@@ -153,7 +159,7 @@ decrease(amount: number){
            
         }
 
-        }
+        } 
     }// END CONVERT
     convertName(name: string)
     {
