@@ -64,46 +64,22 @@ decrease: boolean = false;
     this.convert();
     // Tells me beforeCoinResults if it is set
     if(this.beforeCoinResults[1]){
-      //console.log(this.beforeCoinResults[0].name + " : " + this.beforeCoinResults[0].amount);
       this.beforeFilled = true;
     } // Tells me afterCoinResults if it is set
     if(this.afterCoinResults[1]){
-      //onsole.log(this.afterCoinResults[0].name + " : " + this.afterCoinResults[0].amount);
       this.afterFilled = true;
     } // if after coins afterFilled
 
-/*
-    // Tells me beforeCoinResults and afterCoinResults don't match after they have been set
-    if(this.beforeFilled && this.afterFilled){
-      if(this.afterCoinResults[0].amount != this.beforeCoinResults[0].amount){
-        this.match = false;
-          console.log("We don't match");
-      } // if
-    } // if they don't match
-
-      if(this.beforeFilled && this.afterFilled){
-        if(this.afterCoinResults[0].amount === this.beforeCoinResults[0].amount){
-          this.match = true;
-            console.log("We match");
-        } //if
-      } // if // if thiey match
-
-*/
-
       for(let i = 0; i < this.coinResults.length; i ++){
         if(this.beforeFilled && this.afterFilled){
-         // console.log(this.beforeCoinResults[i]);
           if(this.beforeCoinResults[i].amount < this.afterCoinResults[i].amount){
             this.coinResults[i].decrease = false;
             this.coinResults[i].increase = true;
-           //console.log("I have increased");
           } else if(this.beforeCoinResults[i].amount > this.afterCoinResults[i].amount) {
              this.coinResults[i].increase = false;
             this.coinResults[i].decrease = true;
-           //console.log("I have decreased");
           } // else if
         } // if
-       //console.log(this.coinResults[0].name + " has : " + this.coinResults[0].decrease)
       } // for
   }  // call API
 
@@ -114,7 +90,7 @@ decrease: boolean = false;
         this.windowscrollservice.onWindowScroll() ;
         this.navIsFixed = this.windowscrollservice.navIsFixed;
     }, 10);
-
+// call api every second
     setInterval(() => {
       if(this.holdings){
         this.callAPI()
@@ -238,18 +214,21 @@ decrease: boolean = false;
 
 // Logic Block for setting title
   pinnedCoinAmount: number; // is Used by the DOM to see what item is pinned.
+  pinnedCoinName: string;
   updateTitle: any; // used to give the interval an ID
 
 // gets the value for the browser title and ensure it updates as the API chanhes.
   pinTitle(amount: number, name: string) {
     clearInterval(this.updateTitle);
     this.updateTitle = setInterval(()=>{
-      for(var i = 0; i<= this.coinResults.length; i++){
-        if(name == this.coinResults[i].name){
+      for(let i = 0; i<= this.coinResults.length; i++){
+        if(name === this.coinResults[i].name){
           this.pinnedCoinAmount = this.coinResults[i].amount;
-          this.setTitle(this.coinResults[i].name + " - " + this.coinResults[i].amount.toString());
+          this.pinnedCoinName = this.coinResults[i].name;
+          this.setTitle(this.pinnedCoinName + " - " + this.pinnedCoinAmount.toString());
         } // if
       } // for
+      
     }, 100); // interval
   } // pinTitle
 
