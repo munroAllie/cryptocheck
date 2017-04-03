@@ -159,7 +159,6 @@
 			}; // explanation
 		}; // what you have
 		.ticker{
-			
 			display: inline-block;
 			vertical-align: top;
 			width: 100%;
@@ -202,6 +201,7 @@
 				}; // name pinned
 				.nameincrease{
 					@include nameincrease;
+					background-color: blue;
 				}; // name increase
 				.namedecrease{
 					@include namedecrease;
@@ -230,6 +230,6 @@
 				.amountdecrease{
 					@include amountdecrease;
 				}; // amount decrease
-			};
+			};// wrapper
 		}; // ticker
 	}; // results

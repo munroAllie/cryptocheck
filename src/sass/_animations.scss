@@ -115,21 +115,25 @@
 @mixin amountincrease{
 	animation-name: amountincrease;
     animation-duration:1s;
+	animation-fill-mode:forwards;
 }
 
 @mixin nameincrease{
 	animation-name: nameincrease;
     animation-duration:1s;
+	animation-fill-mode:forwards;
 }
 
 @mixin amountdecrease{
 	animation-name: amountdecrease;
     animation-duration:1s;
+	animation-fill-mode:forwards;
 }
 
 @mixin namedecrease{
 	animation-name: namedecrease;
     animation-duration:1s;
+	animation-fill-mode:forwards;
 }
 
 @mixin floatin{
