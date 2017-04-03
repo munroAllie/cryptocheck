@@ -17,7 +17,7 @@ export class ConversionService{
     }// Get Current Ticker
 
     getFullCurrencyExchange(){
-        return this.http.get('http://api.fixer.io/latest?base=USD')
+        return this.http.get('https://api.fixer.io/latest?base=USD')
             .map(response=> response.json())
     }
 }
