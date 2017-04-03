@@ -14,22 +14,13 @@ import { WindowScrollService } from '../window-scroll.service';
   styleUrls: ['./contents.component.scss']
 })
 export class ContentsComponent implements OnInit {
-
-  //Will hold the data from the JSON file
-
-
   // Variables for front end
-
-
   instructions: boolean = false;
   instructionsLabel: string = "What is this?";
   pageTitle: string = "Cryptocheck.io";
-
-
-
  cryptoSelected : boolean = false; //Determines if crypto is selected
  regSelected : boolean = false; // Determines if currenecy s selected
- 
+
  //ADD IN ANY EXTRA CURRENCIES OR COINS YOU WANT (ALSO ADD IT IN THE COINS AND CURRENCY ARRAY BELOW)
  //ALSO GO TO THE CONVERTNAME FUCTION AND ADD IN THE APPROPRIATE NAME (VERY BOTTOM OF FILE
  step2AOptions : any[] = [
@@ -44,8 +35,6 @@ export class ContentsComponent implements OnInit {
       {name: "USDT"} 
     ]; // step2BOptions
 
-
-
  step2Selection: string; //Holds the value of the currency you have selected.
  holdings: number; //The amount of money you have inputed.
 
@@ -55,58 +44,61 @@ currencies: any[] = ["CAD", "EUR", 'USDT']; //hold the currencies as a string in
 ticker: Ticker[]; // Holds the exchange values for the coins
 currencyExchange: ExchangeType[] = [];   //Holds the exchange values for the currencies
 coinResults: coinResultsType[] = []; //Holds all the names and converted values (DISPLAY THIS IN THE DOM)
-oldCoinResults: coinResultsType[] = [];
+beforeCoinResults: coinResultsType[] = [];
+afterCoinResults: coinResultsType[] = [];
+
 
 interval: any;
 navIsFixed: boolean;
 amountnew: number;
 
-increase(amount: number){
-  this.amountnew = amount +1.0;
-  console.log(amount);
-  console.log(this.amountnew);
-}
-decrease(amount: number){
-  this.amountnew = amount -1.0;
-  console.log(amount);
-  console.log(this.amountnew);
-}
-
-  // DONT FORGET TO ADD THE COIN OR CURRENCY BELOW IN THE PROPER FORMAT (CHECK THE TICKER OR CURRENCY EXCHANGE FOR FORMAT)
-  coins: any[] = ["BTC_ETH", "BTC_DASH", 'BTC_BTC']; //holds the coin as string in the format of the ticker name
-  currencies: any[] = ["CAD", "EUR", 'USDT']; //hold the currencies as a string in the format of currencyExchange
-  ticker: Ticker[]; // Holds the exchange values for the coins
-  currencyExchange: ExchangeType[] = [];   //Holds the exchange values for the currencies
-  coinResults: coinResultsType[] = []; //Holds all the names and converted values (DISPLAY THIS IN THE DOM)
-
-
-  interval: any;
-  navIsFixed: boolean;
-  amountnew: number;
-
-  increase(amount: number) {
-    this.amountnew = amount + 1.0;
-    console.log(amount);
-    console.log(this.amountnew);
-  }
-
+beforeFilled: boolean;
+afterFilled: boolean;
+match: boolean;
+increase: boolean = false;
+decrease: boolean = false;
 
   constructor(private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title) {
-
   }
-        
+  callAPI(){  
+    this.convert();
+    // Tells me beforeCoinResults if it is set
+    if(this.beforeCoinResults[1]){
+      this.beforeFilled = true;
+    } // Tells me afterCoinResults if it is set
+    if(this.afterCoinResults[1]){
+      this.afterFilled = true;
+    } // if after coins afterFilled
+
+      for(let i = 0; i < this.coinResults.length; i ++){
+        if(this.beforeFilled && this.afterFilled){
+          if(this.beforeCoinResults[i].amount < this.afterCoinResults[i].amount){
+            this.coinResults[i].decrease = false;
+            this.coinResults[i].increase = true;
+          } else if(this.beforeCoinResults[i].amount > this.afterCoinResults[i].amount) {
+             this.coinResults[i].increase = false;
+            this.coinResults[i].decrease = true;
+          } // else if
+        } // if
+      } // for
+  }  // call API
+
     ngOnInit(){
-         this.interval = setInterval(() => {
+
+// logic for Sticky Heacer
+        this.interval = setInterval(() => {
         this.windowscrollservice.onWindowScroll() ;
         this.navIsFixed = this.windowscrollservice.navIsFixed;
     }, 10);
-     setInterval(() => {
-               this.convert();
-                },1000);
-      setInterval(()=> 
-      {
-
-      
+// call api every second
+    setInterval(() => {
+      if(this.holdings){
+        this.callAPI()
+      };
+    }, 1000);
+ 
+ //Subscribe
+      setInterval(()=> {
       this.conversionService.getFullTicker().subscribe((res) => {this.ticker = res;
       this.ticker['BTC_BTC'] = {
                               id: 1,
@@ -120,9 +112,8 @@ decrease(amount: number){
                               high24hr: 1,
                               low24hr: 1
                                };
-      
        //end the subscribe function                                                       
-    });
+      });
      this.conversionService.getFullCurrencyExchange().subscribe( (res) => {this.currencyExchange = res["rates"];
      this.currencyExchange['USDT'] = 1;
     });
@@ -130,62 +121,66 @@ decrease(amount: number){
       
     }// End OnInit
 
-
-    convert()
-    { 
-      this.oldCoinResults = this.coinResults;
+// logic block for conversion
+    convert(){
+      this.beforeCoinResults = this.coinResults;
       this.coinResults = [];
-      if(this.cryptoSelected)
-      {
-        //convert all the crypto to currencies
-        for (var i = 0; i<= this.currencies.length -1 ; i++)
-        {
-          var tempName = this.currencies[i] as string;
-          this.coinResults.push(
-            {name: this.convertName(tempName as string),
-            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100}
-          );
-        }
-        //convert all the crypto to crypto
-        for(var i = 0 ; i <= this.coins.length - 1; i++)
-        {
-          var tempName = this.coins[i] as string;
-          
-          this.coinResults.push(
-            {name: this.convertName(tempName as string), 
-             amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last*100000000)/100000000
-           })
-           
-        }
-      }
-      if(this.regSelected)
-        {
-            //convert currency to currency
-            for (var i = 0; i<= this.currencies.length -1 ; i++)
-            {
-             var tempName = this.currencies[i] as string;
-            this.coinResults.push(
-                              {name: this.convertName(tempName as string),
-                               amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]*100)/100
-                              })
-             }
-            
-             //convert currency to crypto
-            for(var i = 0 ; i <= this.coins.length - 1; i++)
-            {
-              var tempName = this.coins[i] as string;
-              this.coinResults.push(
-               {name: this.convertName(tempName as string), 
-                amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last*100000000)/100000000
 
-           });  
-           
-        } // end for loop
-        
-      }// End if Statement 
-     
+      if(this.cryptoSelected && this.step2Selection){
+        //convert all the crypto to currencies
+        for (var i = 0; i<= this.currencies.length -1 ; i++){
+          var tempName = this.currencies[i] as string;
+          this.coinResults.push({
+            name: this.convertName(tempName as string),
+            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100,
+            increase: false,
+            decrease: false
+        }
+          ); // push
+        } // for
+
+        //convert all the crypto to crypto
+        for(var i = 0 ; i <= this.coins.length - 1; i++){
+          var tempName = this.coins[i] as string;
+          this.coinResults.push({
+            name: this.convertName(tempName as string), 
+            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last*100000000)/100000000,
+            increase: false,
+            decrease: false
+           }) // push   
+        } // for
+      } // if cryptoselected
+
+      if(this.regSelected){
+            //convert currency to currency
+            for (var i = 0; i<= this.currencies.length -1 ; i++){
+            var tempName = this.currencies[i] as string;
+            this.coinResults.push({
+              name: this.convertName(tempName as string),
+              amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]*100)/100,
+              increase: false,
+              decrease: false
+              }) // push
+             } // for
       
-    }// END CONVERT
+             //convert currency to crypto
+            for(var i = 0 ; i <= this.coins.length - 1; i++){
+              var tempName = this.coins[i] as string;
+              this.coinResults.push({
+                name: this.convertName(tempName as string), 
+                amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last*100000000)/100000000,
+                increase: false,
+                decrease: false
+                });  //push 
+        } // for
+      }// if   
+       this.afterCoinResults = this.coinResults;
+  }// end convert
+
+  
+
+
+// Logic Block for converting names
     convertName(name: string)
     {
       switch(name){
@@ -212,48 +207,48 @@ decrease(amount: number){
         return ('CAD');
       case 'EUR':
         return ('EUR');
-
     }//END SWITCH
+  }//END CONVERTNAM
 
-  }//END CONVERT
 
-  pinnedCoinAmount: number;
+
+// Logic Block for setting title
+  pinnedCoinAmount: number; // is Used by the DOM to see what item is pinned.
   pinnedCoinName: string;
-  pinnedCoin: string;
-  updateTitle: any;
+  updateTitle: any; // used to give the interval an ID
 
+// gets the value for the browser title and ensure it updates as the API chanhes.
   pinTitle(amount: number, name: string) {
     clearInterval(this.updateTitle);
     this.updateTitle = setInterval(()=>{
-      for(var i = 0; i<= this.coinResults.length; i++){
-        if(name == this.coinResults[i].name){
+      for(let i = 0; i<= this.coinResults.length; i++){
+        if(name === this.coinResults[i].name){
           this.pinnedCoinAmount = this.coinResults[i].amount;
-          this.setTitle(this.coinResults[i].name + " - " + this.coinResults[i].amount.toString());
-        }
-      }
-    }, 100);
-  }
- 
+          this.pinnedCoinName = this.coinResults[i].name;
+          this.setTitle(this.pinnedCoinName + " - " + this.pinnedCoinAmount.toString());
+        } // if
+      } // for
+      
+    }, 100); // interval
+  } // pinTitle
 
-
-    /* this.pinnedCoinAmount = amount.toString();
-     this.pinnedCoinName = name.toString();
-     this.pinnedCoin = this.pinnedCoinName + " - " + this.pinnedCoinAmount;
-     this.setTitle(this.pinnedCoin);
-     console.log(this.pinnedCoinAmount);*/
-  
+ // sets the title of the browser tab 
   setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
-  }
+  } // set title
+
+
+
+// Logic Block for Instructions button
   instructionsToggle() {
     if (this.instructions) {
       this.instructionsLabel = "Close Instructions";
     }
     else {
       this.instructionsLabel = "What is this?";
-    }
-  }
-}
+    } // else
+  } // if
+} // instruction toggle label
 
 
 

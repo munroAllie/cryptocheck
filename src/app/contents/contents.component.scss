@@ -159,7 +159,6 @@
 			}; // explanation
 		}; // what you have
 		.ticker{
-			
 			display: inline-block;
 			vertical-align: top;
 			width: 100%;
@@ -230,6 +229,6 @@
 				.amountdecrease{
 					@include amountdecrease;
 				}; // amount decrease
-			};
+			};// wrapper
 		}; // ticker
 	}; // results
