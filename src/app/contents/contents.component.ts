@@ -228,7 +228,6 @@ decrease: boolean = false;
           this.setTitle(this.pinnedCoinName + " - " + this.pinnedCoinAmount.toString());
         } // if
       } // for
-      
     }, 100); // interval
   } // pinTitle
 
