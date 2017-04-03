@@ -13,90 +13,92 @@
 			} // span
 		} // p
 	} // instructions
-	.stepOne, .stepTwo, .stepThree{
-		display: block;
-		margin-bottom: 1em;
-		h1{
-			display: inline-block;
-			font: $h1;
-		}; //h1
-		h2{
-			display: inline-block;
-			font: $h2;
-		}; // h2
-	}; // stepone, step two, step three
-	.stepOne{
-		opacity: 0;
-		@include fade(.25s);
-		.selectionWrapper{
+	.steps{
+		.stepOne, .stepTwo, .stepThree{
 			display: block;
-			margin-left: -1em;
-		}; //selection wrapper
-		.cryptoCurrency, .regularCurrency{		
-			@include BottomRightDropShadow;
-			margin-right: 1em;
-			margin-left: 1em;
-			margin-top: 1em;
-			display: inline-block;
-			border-radius: 10px;
-			overflow: hidden;
-			background-color: $accent;
-			width: 182px;
-			height: 113px;
-			border-style: solid;
-	    	border-width: 2px;
-	    	border-color: rgba(0, 0, 0, 0);
-			text-align: center;
-			cursor: pointer;
-		}; // cryptocurrency
-		.cryptoCurrency:hover, .regularCurrency:hover{
-	    	border-color: $font;
-		}; // hover states
-		.active{
-			background-color: $primary;
-		}; // active states
-		img{
-			vertical-align: middle;
-			margin-top: 15%;
-			max-width: 30%;
-		}; // img
-		h3{	
-			font: $h3;
-			margin-top: .25em;
-		}; //h3
-	}; //stepone
-	//initialize status of step 2 and three
-	.stepTwo, .stepThree{
-		opacity: 0;
-	}; // step two step three
-	//animate
-	.stepTwo{
-		@include fadeHalf(0.5s);
-	}; //step two
-	.stepThree{
-		@include fadeHalf(0.75s);
-	}; // step three
-	.stepTwo, .stepThree{
-		.stepTwoDropdown, .stepThreeInput{
-			margin-top: 1em;
-			font: $paragraph;
-			display: block;
-			width: 410px;
-			height: 41px;
-			border-style: solid;
-			border-radius: 10px;
-			border-width: 2px;
-			border-color: $font;
-		}; // step Two
-		.stepThreeInput{
-			width: 400px;
-			padding-left: 10px;
-		} // step three input
-	}; // step twp dropdown
-	.Active{
-		@include fade(0s);
-		opacity: 1;
-	}; // step active
+			margin-bottom: 1em;
+			h1{
+				display: inline-block;
+				font: $h1;
+			}; //h1
+			h2{
+				display: inline-block;
+				font: $h2;
+			}; // h2
+		}; // stepone, step two, step three
+		.stepOne{
+			opacity: 0;
+			@include fade(.25s);
+			.selectionWrapper{
+				display: block;
+				margin-left: -1em;
+			}; //selection wrapper
+			.cryptoCurrency, .regularCurrency{		
+				@include BottomRightDropShadow;
+				margin-right: 1em;
+				margin-left: 1em;
+				margin-top: 1em;
+				display: inline-block;
+				border-radius: 10px;
+				overflow: hidden;
+				background-color: $accent;
+				width: 182px;
+				height: 113px;
+				border-style: solid;
+				border-width: 2px;
+				border-color: rgba(0, 0, 0, 0);
+				text-align: center;
+				cursor: pointer;
+			}; // cryptocurrency
+			.cryptoCurrency:hover, .regularCurrency:hover{
+				border-color: $font;
+			}; // hover states
+			.active{
+				background-color: $primary;
+			}; // active states
+			img{
+				vertical-align: middle;
+				margin-top: 15%;
+				max-width: 30%;
+			}; // img
+			h3{	
+				font: $h3;
+				margin-top: .25em;
+			}; //h3
+		}; //stepone
+		//initialize status of step 2 and three
+		.stepTwo, .stepThree{
+			opacity: 0;
+		}; // step two step three
+		//animate
+		.stepTwo{
+			@include fadeHalf(0.5s);
+		}; //step two
+		.stepThree{
+			@include fadeHalf(0.75s);
+		}; // step three
+		.stepTwo, .stepThree{
+			.stepTwoDropdown, .stepThreeInput{
+				margin-top: 1em;
+				font: $paragraph;
+				display: block;
+				width: 410px;
+				height: 41px;
+				border-style: solid;
+				border-radius: 10px;
+				border-width: 2px;
+				border-color: $font;
+			}; // step Two
+			.stepThreeInput{
+				width: 400px;
+				padding-left: 10px;
+			} // step three input
+		}; // step twp dropdown
+		.Active{
+			@include fade(0s);
+			opacity: 1;
+		}; // step active
+	}; //steps
 }; // contents
 .sticky{
 	margin-top: 80px; 
