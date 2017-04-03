@@ -54,26 +54,57 @@ amountnew: number;
 
 beforeFilled: boolean;
 afterFilled: boolean;
+match: boolean;
+increase: boolean = false;
+decrease: boolean = false;
 
   constructor(private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title) {
   }
   callAPI(){  
-    this.beforeCoinResults = this.coinResults;
-    if(this.beforeCoinResults[1]){
-      this.beforeFilled = true;
-    } 
     this.convert();
+    // Tells me beforeCoinResults if it is set
+    if(this.beforeCoinResults[1]){
+      //console.log(this.beforeCoinResults[0].name + " : " + this.beforeCoinResults[0].amount);
+      this.beforeFilled = true;
+    } // Tells me afterCoinResults if it is set
     if(this.afterCoinResults[1]){
+      //onsole.log(this.afterCoinResults[0].name + " : " + this.afterCoinResults[0].amount);
       this.afterFilled = true;
-    }
+    } // if after coins afterFilled
+
+/*
+    // Tells me beforeCoinResults and afterCoinResults don't match after they have been set
     if(this.beforeFilled && this.afterFilled){
       if(this.afterCoinResults[0].amount != this.beforeCoinResults[0].amount){
+        this.match = false;
           console.log("We don't match");
-      }
-    }
-    this.afterCoinResults = this.coinResults;
-    
+      } // if
+    } // if they don't match
 
+      if(this.beforeFilled && this.afterFilled){
+        if(this.afterCoinResults[0].amount === this.beforeCoinResults[0].amount){
+          this.match = true;
+            console.log("We match");
+        } //if
+      } // if // if thiey match
+
+*/
+
+      for(let i = 0; i < this.coinResults.length; i ++){
+        if(this.beforeFilled && this.afterFilled){
+         // console.log(this.beforeCoinResults[i]);
+          if(this.beforeCoinResults[i].amount < this.afterCoinResults[i].amount){
+            this.coinResults[i].decrease = false;
+            this.coinResults[i].increase = true;
+           //console.log("I have increased");
+          } else if(this.beforeCoinResults[i].amount > this.afterCoinResults[i].amount) {
+             this.coinResults[i].increase = false;
+            this.coinResults[i].decrease = true;
+           //console.log("I have decreased");
+          } // else if
+        } // if
+       //console.log(this.coinResults[0].name + " has : " + this.coinResults[0].decrease)
+      } // for
   }  // call API
 
     ngOnInit(){
@@ -116,6 +147,7 @@ afterFilled: boolean;
 
 // logic block for conversion
     convert(){
+      this.beforeCoinResults = this.coinResults;
       this.coinResults = [];
 
       if(this.cryptoSelected && this.step2Selection){
@@ -124,7 +156,10 @@ afterFilled: boolean;
           var tempName = this.currencies[i] as string;
           this.coinResults.push({
             name: this.convertName(tempName as string),
-            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100}
+            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100,
+            increase: false,
+            decrease: false
+        }
           ); // push
         } // for
 
@@ -133,7 +168,9 @@ afterFilled: boolean;
           var tempName = this.coins[i] as string;
           this.coinResults.push({
             name: this.convertName(tempName as string), 
-            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last*100000000)/100000000
+            amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last*100000000)/100000000,
+            increase: false,
+            decrease: false
            }) // push   
         } // for
       } // if cryptoselected
@@ -144,7 +181,9 @@ afterFilled: boolean;
             var tempName = this.currencies[i] as string;
             this.coinResults.push({
               name: this.convertName(tempName as string),
-              amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]*100)/100
+              amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]*100)/100,
+              increase: false,
+              decrease: false
               }) // push
              } // for
       
@@ -153,10 +192,13 @@ afterFilled: boolean;
               var tempName = this.coins[i] as string;
               this.coinResults.push({
                 name: this.convertName(tempName as string), 
-                amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last*100000000)/100000000
+                amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last*100000000)/100000000,
+                increase: false,
+                decrease: false
                 });  //push 
         } // for
       }// if   
+       this.afterCoinResults = this.coinResults;
   }// end convert
 
   

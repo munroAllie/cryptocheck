@@ -201,7 +201,6 @@
 				}; // name pinned
 				.nameincrease{
 					@include nameincrease;
-					background-color: blue;
 				}; // name increase
 				.namedecrease{
 					@include namedecrease;
