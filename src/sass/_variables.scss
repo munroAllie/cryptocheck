@@ -8,9 +8,15 @@ $font: #2e2e2e;
 $good: #34993C;
 $bad: #993A2F;
 
+$small:		0px;
+$phone: 	331px;
+$tablet: 	600px;
+$desktop: 	750px;
+$wide: 		1100px;
+
 $susy:(
 	columns: 12,
-	container: 100%,
+	container: 80em,
 	gutters: 1/4,
 	gutter-position: inside,
 );
