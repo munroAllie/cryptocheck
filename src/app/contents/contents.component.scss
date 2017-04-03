@@ -99,7 +99,7 @@
 	}; // step active
 }; // contents
 .sticky{
-	margin-top: 125px; 
+	margin-top: 80px; 
 }; // sticky
 @import '../../styles.scss';
 	.results{
@@ -156,6 +156,15 @@
 				.explanationwrapper{
 					@include span (5 of 6);
 				} // explanation wrapper
+				.imagewrapper{
+					@include span (6 of 6);
+					margin-top: 1em;
+					img{
+						border-radius: 10px;
+						max-width: 100%;
+						@include BottomRightDropShadow;
+					};
+				};
 			}; // explanation
 		}; // what you have
 		.ticker{
