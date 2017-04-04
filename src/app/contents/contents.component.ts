@@ -26,6 +26,7 @@ export class ContentsComponent implements OnInit {
  step2AOptions : any[] = [
       {name: "make a selection..."},
       {name: "DASH"},
+      {name: "Ripple (XRP)"},
       {name: "Etherium"},
       {name: "Bitcoin"}  
     ]; // step2AOptions
@@ -39,7 +40,7 @@ export class ContentsComponent implements OnInit {
  holdings: number; //The amount of money you have inputed.
 
 // DONT FORGET TO ADD THE COIN OR CURRENCY BELOW IN THE PROPER FORMAT (CHECK THE TICKER OR CURRENCY EXCHANGE FOR FORMAT)
-coins: any[] = ["BTC_ETH", "BTC_DASH", 'BTC_BTC' ]; //holds the coin as string in the format of the ticker name
+coins: any[] = ["BTC_ETH", "BTC_DASH", 'BTC_BTC', 'BTC_XRP' ]; //holds the coin as string in the format of the ticker name
 currencies: any[] = ["CAD", "EUR", 'USDT']; //hold the currencies as a string in the format of currencyExchange
 ticker: Ticker[]; // Holds the exchange values for the coins
 currencyExchange: ExchangeType[] = [];   //Holds the exchange values for the currencies
@@ -195,6 +196,11 @@ decrease: boolean = false;
         return ('BTC_DASH');
       case 'BTC_DASH':
         return ('DASH');
+
+      case 'Ripple (XRP)':
+        return ('BTC_XRP');
+      case 'BTC_XRP':
+        return ('Ripple (XRP)');
 
       case 'Etherium':
         return ('BTC_ETH');
