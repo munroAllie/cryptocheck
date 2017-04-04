@@ -1,22 +1,44 @@
 @import '../../styles.scss';
 //contents styling
 .contents{
-	@include container;
-	margin-left: 1em;
+	margin-top: 80px;
 	.instructions{
+		@include span (12 of 12);
 		margin-top: 1em;
 		font: $paragraph;
 		p{
-			line-height: 1.5em;
+			line-height: 1.25em;
 			span{
 				font-weight: $heavy;
 			} // span
 		} // p
+		hr{
+			margin-bottom: 0px;
+		}; // hr
 	} // instructions
 	.steps{
+		@include span(6 of 12);
+		display: inline-block;
+		float: left;
+		border-color: $font;
+		border-right: 1px;
+		padding-top: .5em;
+		border-style: solid;
+		p{
+			font: $paragraph;
+			span{
+				font-weight: $heavy;
+			};
+		};
 		.stepOne, .stepTwo, .stepThree{
 			display: block;
+			margin-top: .5em;
 			margin-bottom: 1em;
+			span{
+				@include breakpoint ( 0 $wide){
+					display: none;
+				}
+			};
 			h1{
 				display: inline-block;
 				font: $h1;
@@ -24,6 +46,10 @@
 			h2{
 				display: inline-block;
 				font: $h2;
+				@include breakpoint(0 $wide){
+					display: block;
+
+				};
 			}; // h2
 		}; // stepone, step two, step three
 		.stepOne{
@@ -33,22 +59,30 @@
 				display: block;
 				margin-left: -1em;
 			}; //selection wrapper
-			.cryptoCurrency, .regularCurrency{		
+			.cryptoCurrency, .regularCurrency{	
+				width: 40%;
 				@include BottomRightDropShadow;
-				margin-right: 1em;
-				margin-left: 1em;
+				margin-right: 2%;
+				margin-left: 1em;;
 				margin-top: 1em;
 				display: inline-block;
 				border-radius: 10px;
 				overflow: hidden;
 				background-color: $accent;
-				width: 182px;
 				height: 113px;
 				border-style: solid;
 				border-width: 2px;
 				border-color: rgba(0, 0, 0, 0);
 				text-align: center;
 				cursor: pointer;
+				img{
+					width: 60%;
+					max-width: 150px;
+					
+					height: auto;
+					margin-top: 30px;
+				};
+		
 			}; // cryptocurrency
 			.cryptoCurrency:hover, .regularCurrency:hover{
 				border-color: $font;
@@ -56,15 +90,6 @@
 			.active{
 				background-color: $primary;
 			}; // active states
-			img{
-				vertical-align: middle;
-				margin-top: 15%;
-				max-width: 30%;
-			}; // img
-			h3{	
-				font: $h3;
-				margin-top: .25em;
-			}; //h3
 		}; //stepone
 		//initialize status of step 2 and three
 		.stepTwo, .stepThree{
@@ -79,10 +104,10 @@
 		}; // step three
 		.stepTwo, .stepThree{
 			.stepTwoDropdown, .stepThreeInput{
+				width: 100%;
 				margin-top: 1em;
 				font: $paragraph;
 				display: block;
-				width: 410px;
 				height: 41px;
 				border-style: solid;
 				border-radius: 10px;
@@ -90,7 +115,7 @@
 				border-color: $font;
 			}; // step Two
 			.stepThreeInput{
-				width: 400px;
+				width: 97%;
 				padding-left: 10px;
 			} // step three input
 		}; // step twp dropdown
@@ -98,20 +123,31 @@
 			@include fade(0s);
 			opacity: 1;
 		}; // step active
+		@include breakpoint( 0 $desktop){
+			@include span(12 of 12);
+		}
 	}; //steps
 }; // contents
-.sticky{
-	margin-top: 80px; 
-}; // sticky
-@import '../../styles.scss';
 	.results{
-		@include floatin;
-		width: 100%;
-		margin-left: 1em;
+		padding-top: 0.5em;
+		@include span (6 of 12);
 		display: inline-block;
+		float: left;	
+		.warning{
+			opacity: 0.5;
+			p{
+			font: $paragraph;
+			}; // p
+		}; // warning	
+		
 		.whatyouhave{
+			@include floatin;
+			display: none;
 			@include clearfix;
 			display: block;
+			p{
+				font: $paragraph;
+			};
 			.pinningInstructions{
 				margin-top: 1em;
 				font: $paragraph;
@@ -137,8 +173,9 @@
 			} // pinning instructions hover
 			.explanation{
 				@include span (6 of 6);
+				
 				font: $paragraph;
-				width: 800px;
+				width: 100%;
 				margin-top: 0px;
 				padding: 1em;
 				margin-top: .5em;
@@ -157,10 +194,12 @@
 				}; // icon wrapper
 				.explanationwrapper{
 					@include span (5 of 6);
+					text-align: left;
 				} // explanation wrapper
 				.imagewrapper{
 					@include span (6 of 6);
 					margin-top: 1em;
+					text-align: right;
 					img{
 						border-radius: 10px;
 						max-width: 100%;
@@ -199,9 +238,10 @@
 					border-color: $font;
 					border-radius: 0px 10px 10px 0px; 
 					display: inline-block;
-					width: 100px;
+					width: 150px;
 					background-color: $font;
 					margin-left: -5px;
+					
 				}; //name
 				.namepinned{
 					background-color: $primary;
@@ -223,10 +263,13 @@
 					display: inline-block;
 					padding: 0.5em;
 					padding-right: 1.5em;
-					width: 280px;
+					width: 40%;
 					border-style: solid;
 					border-width: 2px;
 					border-color: $font;
+					@include breakpoint (0 $phone){
+						width: 30%;
+					}; // breakpoint
 				}; //amount
 				.amountpinned{
 					border-color: $primary;
@@ -242,4 +285,12 @@
 				}; // amount decrease
 			};// wrapper
 		}; // ticker
-	}; // results
+	@include breakpoint ( 0 $desktop){
+		@include span (12 of 12);
+	} // breakpoint 
+	@include breakpoint (0 $desktop){
+		border-top: 1px;
+		border-color: $font;
+		border-style: solid;
+	} // breakpoint
+}; // results

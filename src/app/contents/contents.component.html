@@ -5,32 +5,32 @@
 
 		<p><span>Welcome to Cryptocheck</span>, 
 			<br> 
-				This application is <span>a free to use tool </span> for monitoring the current value of your crypocurrency and what your holdings can translate to.
-			<br>
-				Check the value of your currency, <span>follow these three steps </span>:
+				This application is <span>a free to use tool </span> for monitoring the current value of your crypocurrency and what your holdings can translate to.	
 		</p>
 		<hr>
 		<!--><button (click) = "getCurrentTicker('BTC','BBR')">Click Here to get the current time</button><-->
 	</div>
 	<!-- Step One -->
 <form class="steps">
+	<p>Check the value of your currency, <span>follow these three steps</span>:</p>
 	<div class="stepOne">
-		<h1>Step 1 - </h1>
+		<h1>Step 1 <span>-</span> </h1>
 		<h2>Choose A Currency Type</h2>
 		<div class="selectionWrapper">
 			<div class="cryptoCurrency" (click)="cryptoSelected = true; regSelected = false" [ngClass]="{active: cryptoSelected}">
-				<img src="../assets/images/cryptocurrency.svg">
-				<h3>Cryptocurrency</h3>
+
+					<img src="../../assets/images/cryptocurrency.png">
+
 			</div>
 			<div class="regularCurrency" (click)="regSelected = true; cryptoSelected = false" [ngClass]="{active: regSelected}">
-				<img src="../assets/images/regularcurrency.svg">
-				<h3>Regular Currency</h3>
+					<img src="../../assets/images/regularcurrency.png">
+
 			</div>
 		</div>
 	</div>
 	<!-- Step Two -->
 	<div class="stepTwo" [ngClass]="{Active: regSelected || cryptoSelected}">
-		<h1>Step 2 - </h1>
+		<h1>Step 2 <span>-</span> </h1>
 		<h2>Choose A Currency</h2>
 		<!-- placeholder-->
 		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="!cryptoSelected && !regSelected">
@@ -55,7 +55,7 @@
 	</div>
 	<!-- Step Three -->
 	<div class="stepThree" [ngClass]="{Active: step2Selection}">
-		<h1>Step 3 - </h1><h2>Enter Your Holdings</h2>
+		<h1>Step 3 <span>-</span> </h1><h2>Enter Your Holdings</h2>
 
 		<input type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings">
 
@@ -64,10 +64,12 @@
 
 </section>
 
-<section class="results" *ngIf="holdings">
-<hr>
-<div class="whatyouhave">
-	<h2>You Could Have...</h2>
+<section class="results">
+<div class="warning" *ngIf="!holdings">
+	<p> Complete the three steps to display your currencies here</p>
+</div>
+<div class="whatyouhave" *ngIf="holdings">
+	<p>You Could Have...</p>
 	<div class="pinningInstructions" (click)="instructions = !instructions; instructionsToggle()">
 		<i class="material-icons">gps_not_fixed</i>
 		<span>{{ instructionsLabel }}</span>

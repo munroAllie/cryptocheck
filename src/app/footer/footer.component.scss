@@ -1,15 +1,76 @@
 @import '../../styles.scss';
 .footerBar{
-	color: $font;
+	@include span (12 of 12);
+	@include clearfix;
+	font: $footer;
+	color: $white;
 	margin-top: 4em;
-	height: 100px;
-	width: 100%;
 	padding: .5em;
-	background-color: $accent;
+	background-color: #3f3f3f;
 	@include VerticleDropShadow;
+	.comments{
+		@include span(6 of 12);
+		margin-bottom: 2em;
+		a{
+			color: $primary;
+			text-decoration: none;
+		}; // a
+		a:hover{
+			color: $white;
+		};
+		@include breakpoint(0 $tablet){
+			@include span(12 of 12);
+			text-align: center;
+		}; // breakpoint
+	}; // comments
+	.donation{
+	@include span(6 of 12);
+	text-align: right;
+		.donatebutton{
+			font: $paragraph;
+			padding: 1em;
+			margin-top: .5em;
+			border-style: solid;
+			border-width: 2px;
+			border-color: $font;
+			border-radius: 5px;
+			@include transition(1s)
+		}; // donate button
+		.donatebutton:hover{
+			cursor: pointer;
+			background-color: $primary;
+			@include transition(1s);
+		}; // donation hover;
+		.address{
+			color: $primary;
+			font-weight: $heavy;
+		}; // address
+	@include breakpoint(0 $tablet){
+		@include span(12 of 12);
+		text-align: center;
 
+		} // breakpoint
+	}; // donation
+
+	.disclaimer{
+	@include span(12 of 12);
+	margin-top: 2em;
+	text-align: left;
+		p{
+			a{
+				color: $primary;
+				text-decoration: none;
+			};
+			a:hover{
+				color: $white;
+			};
+			span{
+				font-size: 1.25em;
+				text-decoration: underline;
+				font-weight: $heavy;
+			}; // span
+		} //p
+	}; // disclaimer
 }; //header bar
-.donatebitcoin 	{
-	font: $h3;
-	
-};
+
+
