@@ -11,9 +11,7 @@ export class FilterSearch implements PipeTransform {
 			if (filterName === undefined) return coinResults;
 			// return update name array
 			return coinResults.filter(function(coinResult){
-				return coinResult.name.toLowerCase().includes(filterName.toLowerCase());
+				return coinResult.name.includes(filterName);
 			})
-
 	}
-
 }

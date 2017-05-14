@@ -283,18 +283,10 @@ afterFilled: boolean;
 match: boolean;
 increase: boolean = false;
 decrease: boolean = false;
+type: string;
 
   constructor(private conversionService: ConversionService, private titleService: Title) {
-  }
-
-  checkFilterType(){
-    console.log(this.filterType);
-  };
-  checkFilterSearch(){
-    console.log(this.filterSearch);
-  };
-
-  
+  }  
   callAPI(){  
     this.convert();
     // Tells me beforeCoinResults if it is set
@@ -304,7 +296,6 @@ decrease: boolean = false;
     if(this.afterCoinResults[1]){
       this.afterFilled = true;
     } // if after coins afterFilled
-
       for(let i = 0; i < this.coinResults.length; i ++){
         if(this.beforeFilled && this.afterFilled){
           if(this.beforeCoinResults[i].amount < this.afterCoinResults[i].amount){
@@ -317,10 +308,8 @@ decrease: boolean = false;
         } // if
       } // for
   }  // call API
-
     ngOnInit(){
       
-
 // call api every second
     setInterval(() => {
       if(this.holdings){
@@ -358,24 +347,27 @@ decrease: boolean = false;
       this.coinResults = [];
 
       if(this.cryptoSelected && this.step2Selection){
+       
         //convert all the crypto to currencies
         for (var i = 0; i<= this.currencies.length -1 ; i++){
           var tempName = this.currencies[i] as string;
           this.coinResults.push({
             name: this.convertName(tempName as string),
             amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100,
+            type: "cryptoCurrency",
             increase: false,
-            decrease: false
-        }
-          ); // push
+            decrease: false       
+          }); // push 
         } // for
-
+      
         //convert all the crypto to crypto
         for(var i = 0 ; i <= this.coins.length - 1; i++){
           var tempName = this.coins[i] as string;
+          console.log(tempName);
           this.coinResults.push({
             name: this.convertName(tempName as string), 
             amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last*100000000)/100000000,
+            type: "cryptoCurrency",
             increase: false,
             decrease: false
            }) // push   
@@ -389,6 +381,7 @@ decrease: boolean = false;
             this.coinResults.push({
               name: this.convertName(tempName as string),
               amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]*100)/100,
+              type: "regularCurrency",
               increase: false,
               decrease: false
               }) // push
@@ -400,6 +393,7 @@ decrease: boolean = false;
               this.coinResults.push({
                 name: this.convertName(tempName as string), 
                 amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last*100000000)/100000000,
+                type: "regularCurrency",
                 increase: false,
                 decrease: false
                 });  //push 

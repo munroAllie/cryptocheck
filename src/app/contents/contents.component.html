@@ -83,21 +83,20 @@
 		<div class="imagewrapper"><img src="../../assets/images/pinned.jpg"></div>
 	</div>
 </div>
-
+<!-->
 <div class="typefilter">
 		<input type="radio" name="currencyToggle" value="cryptoCurrency" [(ngModel)]="filterType" (ngModelChange)="checkFilterType()" > Crypto Currency<br>
 		<input type="radio" name="currencyToggle" value="regularCurrency" checked [(ngModel)]="filterType" (ngModelChange)="checkFilterType()" > Regular Currency<br>
-		<input type="radio" name="currencyToggle" value="both" [(ngModel)]="filterType" (ngModelChange)="checkFilterType()"> Both
+		<input type="radio" name="currencyToggle" value="both" [(ngModel)]="filterType"> Both
 </div>
 <div class="search">
-				<input type="text" placeholder="Search" [(ngModel)]="filterName" (ngModelChange)="checkFilterSearch()"/>
+				<input type="text" placeholder="Search" [(ngModel)]="filterName"/>
 				<i class="material-icons">search</i>
 </div>
+<-->
 
-
-<div class="ticker" *ngFor="let coinresult of coinResults | filterSearch:filterName">
+<div class="ticker" *ngFor="let coinresult of coinResults">
 	<div class="wrapper" *ngIf="coinresult.name != step2Selection">
-		<!--<h1 *ngIf="match === false">Before: {{beforecoinresult.amount}} - After: {{aftercoinresult.amount}}</h1>-->
 		<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name)">
 			<i class="material-icons" *ngIf="pinnedCoinAmount != coinresult.amount">gps_not_fixed</i>
 			<i class="material-icons selectedCoin" *ngIf="pinnedCoinAmount === coinresult.amount">gps_fixed</i>
