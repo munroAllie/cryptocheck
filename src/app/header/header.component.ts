@@ -1,22 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { WindowScrollService } from '../window-scroll.service';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-  public navIsFixed: boolean;
+export class HeaderComponent{
 
-  constructor( private windowscrollservice  : WindowScrollService) { 
-  
+  constructor() { 
   }
-interval: any;
-   ngOnInit(){
-   this.interval = setInterval(() => {
-        this.windowscrollservice.onWindowScroll() ;
-        this.navIsFixed = this.windowscrollservice.navIsFixed;
-    }, 10);
-   }
 }

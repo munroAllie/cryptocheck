@@ -1,7 +1,6 @@
 @import '../../styles.scss';
 .footerBar{
 	@include span (12 of 12);
-	@include clearfix;
 	font: $footer;
 	color: $white;
 	margin-top: 4em;

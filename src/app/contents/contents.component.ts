@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Rx';
 import { coinResultsType } from './resultsTypeInterface';
 import { ExchangeType } from './ExchangeTypeInterface';
 import { Title } from '@angular/platform-browser';
-import { WindowScrollService } from '../window-scroll.service';
 
 
 @Component({
@@ -14,34 +13,225 @@ import { WindowScrollService } from '../window-scroll.service';
   styleUrls: ['./contents.component.scss']
 })
 export class ContentsComponent implements OnInit {
+  filterName: string;
+
+
   // Variables for front end
   instructions: boolean = false;
   instructionsLabel: string = "What is this?";
   pageTitle: string = "Cryptocheck.io";
- cryptoSelected : boolean = false; //Determines if crypto is selected
- regSelected : boolean = false; // Determines if currenecy s selected
+  cryptoSelected : boolean = false; //Determines if crypto is selected
+  regSelected : boolean = false; // Determines if currenecy s selected
 
  //ADD IN ANY EXTRA CURRENCIES OR COINS YOU WANT (ALSO ADD IT IN THE COINS AND CURRENCY ARRAY BELOW)
  //ALSO GO TO THE CONVERTNAME FUCTION AND ADD IN THE APPROPRIATE NAME (VERY BOTTOM OF FILE
  step2AOptions : any[] = [
       {name: "make a selection..."},
-      {name: "DASH"},
+      {name: "Synereo (AMP)"},
+      {name: "Ardor (ARDR)"},
+      {name: "Bytecoin (BCN)"},
+      {name: "BitCrystals (BCY)"},
+      {name: "Belacoin (BELA)"},
+      {name: "Bitcoin (BTC)"},  
+      {name: "BlackCoin (BLK)"},
+      {name: "BitcoinDark (BTCD)"},
+      {name: "Bitmark (BTM)"},
+      {name: "BitShares (BTS)"},
+      {name: "Burst (BURST)"},
+      {name: "CLAMS (CLAM)"},
+      {name: "DASH (DASH) "},
+      {name: "Decred (DCR)"},
+      {name: "DigiByte (DGB)"},
+      {name: "Dogecoin (DOGE)"},
+      {name: "Einsteinium (EMC2)"},
+      {name: "Ethereum Classic (ETC)"},
+      {name: "Ethereum (ETH)"},
+      {name: "Expanse (EXP)"},
+      {name: "Factom (FCT)"},
+      {name: "FoldingCoin (FLDC)"},
+      {name: "GameCredits (GAME)"},
+      {name: "Golem (GNT)"},
+      {name: "Gridcoin Research (GRC)"},
+      {name: "Huntercoin (HUC)"},
+      {name: "LBRY Credits (LBC)"},
+      {name: "Lisk (LSK)"},
+      {name: "Litecoin (LTC)"},
+      {name: "MaidSafeCoin (MAID)"},
+      {name: "Nautiluscoin (NAUT)"},
+      {name: "NAVCoin (NAV)"},
+      {name: "Neoscoin (NEOS)"},
+      {name: "Namecoin (NMC)"},
+      {name: "DNotes (NOTE)"},
+      {name: "Nexium (NXC)"},
+      {name: "NST (NXT)"},
+      {name: "Omni (OMNI)"},
+      {name: "PascalCoin (PASC)"},
+      {name: "Pinkcoin (PINK)"},
+      {name: "PotCoin (POT)"},
+      {name: "Peercoin (PPC)"},
+      {name: "Radium (RADS)"},
+      {name: "Augur (REP)"},
+      {name: "Riecoin (RIC)"},
+      {name: "Steem Dollars (SBD)"},
+      {name: "Siacoin (SC)"},
+      {name: "Storjcoin X (SJCX)"},
+      {name: "STEEM (STEEM)"},
+      {name: "Stellar (STR)"},
+      {name: "Stratis (STRAT)"},
+      {name: "Syscoin (SYS)"},
+      {name: "Viacoin (VIA)"},
+      {name: "VeriCoin (VRC)"},
+      {name: "Vertcoin (VTC)"},
+      {name: "BitcoinPlus (XBC)"},
+      {name: "Counterparty (XCP)"},
+      {name: "NEM (XEM)"},
+      {name: "Monero (XMR)"},
+      {name: "Primecoin (XPM)"},
       {name: "Ripple (XRP)"},
-      {name: "Etherium"},
-      {name: "Bitcoin"}  
+      {name: "Vcash (XVC)"},
+      {name: "Zcash (ZEC)"}
+     
     ]; // step2AOptions
  step2BOptions : any[] = [
       {name: "make a selection..."},
-      {name: "CAD"},
-      {name: "USDT"} 
+      {name: "Canadian (CAD)"},
+      {name: "American (USDT)"},
+      {name: "Euro (EUR)"},
+      {name: "Austrailian (AUD)"},
+      {name: "Buglarian (BGN)"},
+      {name: "Brazilian (BRL)"},
+      {name: "Swiss Franc (CHF)"},
+      {name: "Chinese (CNY)"},
+      {name: "Czech (CZK)"},
+      {name: "Danish (DKK)"},
+      {name: "British Pound (GBP)"},
+      {name: "Hong Kong (HKD)"},
+      {name: "Croatian (HRK)"},
+      {name: "Hungarian (HUF)"},
+      {name: "Indonesian (IDR)"},
+      {name: "Israeli (ILS)"},
+      {name: "Indian (INR)"},
+      {name: "Japanese (JPY)"},
+      {name: "South Korean (KRW)"},
+      {name: "Mexican (MXN)"},
+      {name: "Malaysian (MYR)"},
+      {name: "Norwegian (NOK)"},
+      {name: "New Zealand (NZD)"},
+      {name: "Philippine (PHP)"},
+      {name: "Polish (PLN)"},
+      {name: "Romanian (RON)"},
+      {name: "Russian (RUB)"},
+      {name: "Swedish (SEK)"},
+      {name: "Singapore (SGD)"},
+      {name: "Thai (THB)"},
+      {name: "Turkish (TRY)"},
+      {name: "South African (ZAR)"}
+   
     ]; // step2BOptions
 
  step2Selection: string; //Holds the value of the currency you have selected.
  holdings: number; //The amount of money you have inputed.
 
 // DONT FORGET TO ADD THE COIN OR CURRENCY BELOW IN THE PROPER FORMAT (CHECK THE TICKER OR CURRENCY EXCHANGE FOR FORMAT)
-coins: any[] = ["BTC_ETH", "BTC_DASH", 'BTC_BTC', 'BTC_XRP' ]; //holds the coin as string in the format of the ticker name
-currencies: any[] = ["CAD", "EUR", 'USDT']; //hold the currencies as a string in the format of currencyExchange
+coins: any[] = [
+  "BTC_AMP",
+  "BTC_ARDR",
+  "BTC_BCN",
+  "BTC_BCY",
+  "BTC_BTC",
+  "BTC_BELA",
+  "BTC_BLK",
+  "BTC_BTCD",
+  "BTC_BTM",
+  "BTC_BTS",
+  "BTC_BURST",
+  "BTC_CLAM",
+  "BTC_DASH",
+  "BTC_DCR",
+  "BTC_DGB",
+  "BTC_DOGE",
+  "BTC_EMC2",
+  "BTC_ETC",
+  "BTC_ETH",
+  "BTC_EXP",
+  "BTC_FCT",
+  "BTC_FLDC",
+  "BTC_GAME",
+  "BTC_GNT",
+  "BTC_GRC",
+  "BTC_HUC",
+  "BTC_LBC",
+  "BTC_LSK",
+  "BTC_LTC",
+  "BTC_MAID",
+  "BTC_NAUT",
+  "BTC_NAV",
+  "BTC_NEOS",
+  "BTC_NMC",
+  "BTC_NOTE",
+  "BTC_NXC",
+  "BTC_NXT",
+  "BTC_OMNI",
+  "BTC_PASC",
+  "BTC_PINK",
+  "BTC_POT",
+  "BTC_PPC",
+  "BTC_RADS",
+  "BTC_REP",
+  "BTC_RIC",
+  "BTC_SBD",
+  "BTC_SC",
+  "BTC_SJCX",
+  "BTC_STEEM",
+  "BTC_STR",
+  "BTC_STRAT",
+  "BTC_SYS",
+  "BTC_VIA",
+  "BTC_VRC",
+  "BTC_VTC",
+  "BTC_XBC",
+  "BTC_XCP",
+  "BTC_XEM",
+  "BTC_XMR",
+  "BTC_XPM",
+  "BTC_XRP",
+  "BTC_XVC",
+  "BTC_ZEC"
+];
+currencies: any[] = [
+  "CAD",
+  "EUR",
+  'USDT',
+  'AUD',
+  'BGN',
+  'BRL',
+  'CHF',
+  'CNY',
+  'CZK',
+  'DKK',
+  'GBP',
+  'HKD',
+  'HRK',
+  'HUF',
+  'IDR',
+  'ILS',
+  'INR',
+  'JPY',
+  'KRW',
+  'MXN',
+  'MYR',
+  'NOK',
+  'NZD',
+  'PHP',
+  'PLN',
+  'RON',
+  'RUB',
+  'SEK',
+  'SGD',
+  'THB',
+  'TRY',
+  'ZAR'
+  ]; //hold the currencies as a string in the format of currencyExchange
 ticker: Ticker[]; // Holds the exchange values for the coins
 currencyExchange: ExchangeType[] = [];   //Holds the exchange values for the currencies
 coinResults: coinResultsType[] = []; //Holds all the names and converted values (DISPLAY THIS IN THE DOM)
@@ -50,17 +240,18 @@ afterCoinResults: coinResultsType[] = [];
 
 
 interval: any;
-navIsFixed: boolean;
-amountnew: number;
+
+//amount new: number;
 
 beforeFilled: boolean;
 afterFilled: boolean;
 match: boolean;
 increase: boolean = false;
 decrease: boolean = false;
+type: string;
 
-  constructor(private conversionService: ConversionService, private windowscrollservice: WindowScrollService, private titleService: Title) {
-  }
+  constructor(private conversionService: ConversionService, private titleService: Title) {
+  }  
   callAPI(){  
     this.convert();
     // Tells me beforeCoinResults if it is set
@@ -70,7 +261,6 @@ decrease: boolean = false;
     if(this.afterCoinResults[1]){
       this.afterFilled = true;
     } // if after coins afterFilled
-
       for(let i = 0; i < this.coinResults.length; i ++){
         if(this.beforeFilled && this.afterFilled){
           if(this.beforeCoinResults[i].amount < this.afterCoinResults[i].amount){
@@ -83,14 +273,8 @@ decrease: boolean = false;
         } // if
       } // for
   }  // call API
-
     ngOnInit(){
-
-// logic for Sticky Heacer
-        this.interval = setInterval(() => {
-        this.windowscrollservice.onWindowScroll() ;
-        this.navIsFixed = this.windowscrollservice.navIsFixed;
-    }, 10);
+      
 // call api every second
     setInterval(() => {
       if(this.holdings){
@@ -128,6 +312,7 @@ decrease: boolean = false;
       this.coinResults = [];
 
       if(this.cryptoSelected && this.step2Selection){
+       
         //convert all the crypto to currencies
         for (var i = 0; i<= this.currencies.length -1 ; i++){
           var tempName = this.currencies[i] as string;
@@ -135,11 +320,10 @@ decrease: boolean = false;
             name: this.convertName(tempName as string),
             amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100,
             increase: false,
-            decrease: false
-        }
-          ); // push
+            decrease: false       
+          }); // push 
         } // for
-
+      
         //convert all the crypto to crypto
         for(var i = 0 ; i <= this.coins.length - 1; i++){
           var tempName = this.coins[i] as string;
@@ -186,33 +370,485 @@ decrease: boolean = false;
     {
       switch(name){
 
-      case 'Bitcoin':
+
+      case 'Synereo (AMP)':
+        return ('BTC_AMP');
+      case 'BTC_AMP':
+        return ('Synereo (AMP)');
+      
+      case 'Ardor (ARDR)':
+        return ('BTC_ARDR');
+      case 'BTC_ARDR':
+        return ('Ardor (ARDR)');
+
+
+      case 'Bytecoin (BCN)':
+        return ('BTC_BCN');
+      case 'BTC_BCN':
+        return ('Bytecoin (BCN)');
+
+      case 'BitCrystals (BCY)':
+        return ('BTC_BCY');
+      case 'BTC_BCY':
+        return ('BitCrystals (BCY)');
+
+      case 'Belacoin (BELA)':
+        return ('BTC_BELA');
+      case 'BTC_BELA':
+        return ('Belacoin (BELA)');
+
+      case 'Bitcoin (BTC)':
         return ('BTC_BTC');
       case 'BTC_BTC':
-        return ('Bitcoin');
+        return ('Bitcoin (BTC)');
 
+      case 'BlackCoin (BLK)':
+        return ('BTC_BLK');
+      case 'BTC_BLK':
+        return ('BlackCoin (BLK)');
 
-      case 'DASH':
+      case 'BitcoinDark (BTCD)':
+        return ('BTC_BTCD');
+      case 'BTC_BTCD':
+        return ('BitcoinDark (BTCD)');
+
+      case 'Bitmark (BTM)':
+        return ('BTC_BTM');
+      case 'BTC_BTM':
+        return ('Bitmark (BTM)');
+
+      case 'BitShares (BTS)':
+        return ('BTC_BTS');
+      case 'BTC_BTS':
+        return ('BitShares (BTS)');
+
+      case 'Burst (BURST)':
+        return ('BTC_BURST');
+      case 'BTC_BURST':
+        return ('Burst (BURST)');
+
+        case 'CLAMS (CLAM)':
+        return ('BTC_CLAM');
+      case 'BTC_CLAM':
+        return ('CLAMS (CLAM)');
+
+      case 'DASH (DASH)':
         return ('BTC_DASH');
       case 'BTC_DASH':
-        return ('DASH');
+        return ('DASH (DASH)');
+
+      case 'Decred (DCR)':
+        return ('BTC_DCR');
+      case 'BTC_DCR':
+        return ('Decred (DCR)');
+
+      case 'DigiByte (DGB)':
+        return ('BTC_DGB');
+      case 'BTC_DGB':
+        return ('DigiByte (DGB)');
+
+      case 'Dogecoin (DOGE)':
+        return ('BTC_DOGE');
+      case 'BTC_DOGE':
+        return ('Dogecoin (DOGE)');
+
+      case 'Einsteinium (EMC2)':
+        return ('BTC_EMC2');
+      case 'BTC_EMC2':
+        return ('Einsteinium (EMC2)');
+
+      case 'Ethereum Classic (ETC)':
+        return ('BTC_ETC');
+      case 'BTC_ETC':
+        return ('Ethereum Classic (ETC)');
+
+      case 'Ethereum (ETH)':
+        return ('BTC_ETH');
+      case 'BTC_ETH':
+        return ('Ethereum (ETH)');
+
+      case 'Expanse (EXP)':
+        return ('BTC_EXP');
+      case 'BTC_EXP':
+        return ('Expanse (EXP)');
+
+      case 'Factom (FCT)':
+        return ('BTC_FCT');
+      case 'BTC_FCT':
+        return ('Factom (FCT)');
+
+      case 'FoldingCoin (FLDC)':
+        return ('BTC_FLDC');
+      case 'BTC_FLDC':
+        return ('FoldingCoin (FLDC)');
+
+      case 'GameCredits (GAME)':
+        return ('BTC_GAME');
+      case 'BTC_GAME':
+        return ('GameCredits (GAME)');
+
+      case 'Golem (GNT)':
+        return ('BTC_GNT');
+      case 'BTC_GNT':
+        return ('Golem (GNT)');
+
+      case 'Gridcoin Research (GRC)':
+        return ('BTC_GRC');
+      case 'BTC_GRC':
+        return ('Gridcoin Research (GRC)');
+
+      case 'Huntercoin (HUC)':
+        return ('BTC_HUC');
+      case 'BTC_HUC':
+        return ('Huntercoin (HUC)');
+
+      case 'LBRY Credits (LBC)':
+        return ('BTC_LBC');
+      case 'BTC_LBC':
+        return ('LBRY Credits (LBC)');
+
+      case 'Lisk (LSK)':
+        return ('BTC_LSK');
+      case 'BTC_LSK':
+        return ('Lisk (LSK)');
+      
+      case 'Litecoin (LTC)':
+        return ('BTC_LTC');
+      case 'BTC_LTC':
+        return ('Litecoin (LTC)');
+
+      case 'MaidSafeCoin (MAID)':
+        return ('BTC_MAID');
+      case 'BTC_MAID':
+        return ('MaidSafeCoin (MAID)');
+
+      case 'Nautiluscoin (NAUT)':
+        return ('BTC_NAUT');
+      case 'BTC_NAUT':
+        return ('Nautiluscoin (NAUT)');
+
+      case 'NAVCoin (NAV)':
+        return ('BTC_NAV');
+      case 'BTC_NAV':
+        return ('NAVCoin (NAV)');
+
+      case 'Neoscoin (NEOS)':
+        return ('BTC_NEOS');
+      case 'BTC_NEOS':
+        return ('Neoscoin (NEOS)');
+
+      case 'Namecoin (NMC)':
+        return ('BTC_NMC');
+      case 'BTC_NMC':
+        return ('Namecoin (NMC)');
+
+      case 'DNotes (NOTE)':
+        return ('BTC_NOTE');
+      case 'BTC_NOTE':
+        return ('DNotes (NOTE)');
+
+      case 'Nexium (NXC)':
+        return ('BTC_NXC');
+      case 'BTC_NXC':
+        return ('Nexium (NXC)');
+
+      case 'NST (NXT)':
+        return ('BTC_NXT');
+      case 'BTC_NXT':
+        return ('NST (NXT)');
+
+      case 'Omni (OMNI)':
+        return ('BTC_OMNI');
+      case 'BTC_OMNI':
+        return ('Omni (OMNI)');
+
+      case 'PascalCoin (PASC)':
+        return ('PascalCoin (PASC)');
+      case 'BTC_PASC':
+        return ('PascalCoin (PASC)');
+
+      case 'Pinkcoin (PINK)':
+        return ('BTC_PINK');
+      case 'BTC_PINK':
+        return ('Pinkcoin (PINK)');
+
+      case 'PotCoin (POT)':
+        return ('BTC_POT');
+      case 'BTC_POT':
+        return ('PotCoin (POT)');
+
+      case 'Peercoin (PPC)':
+        return ('BTC_PPC');
+      case 'BTC_PPC':
+        return ('Peercoin (PPC)');
+      
+      case 'Radium (RADS)':
+        return ('BTC_RADS');
+      case 'BTC_RADS':
+        return ('Radium (RADS)');
+
+      case 'Augur (REP)':
+        return ('BTC_REP');
+      case 'BTC_REP':
+        return ('Augur (REP)');
+
+      case 'Riecoin (RIC)':
+        return ('BTC_RIC');
+      case 'BTC_RIC':
+        return ('Riecoin (RIC)');
+
+      case 'Steem Dollars (SBD)':
+        return ('BTC_SBD');
+      case 'BTC_SBD':
+        return ('Steem Dollars (SBD)');
+
+      case 'Siacoin (SC)':
+        return ('BTC_SC');
+      case 'BTC_SC':
+        return ('Siacoin (SC)');
+
+      case 'Storjcoin X (SJCX)':
+        return ('BTC_SJCX');
+      case 'BTC_SJCX':
+        return ('Storjcoin X (SJCX)');
+
+      case 'STEEM (STEEM)':
+        return ('BTC_STEEM');
+      case 'BTC_STEEM':
+        return ('STEEM (STEEM)');
+
+      case 'Stellar (STR)':
+        return ('BTC_STR');
+      case 'BTC_STR':
+        return ('Stellar (STR)');
+
+      case 'Stratis (STRAT)':
+        return ('BTC_STRAT');
+      case 'BTC_STRAT':
+        return ('Stratis (STRAT)');
+      
+      case 'Syscoin (SYS)':
+        return ('BTC_SYS');
+      case 'BTC_SYS':
+        return ('Syscoin (SYS)');
+
+      case 'Viacoin (VIA)':
+        return ('BTC_VIA');
+      case 'BTC_VIA':
+        return ('Viacoin (VIA)');
+
+      case 'VeriCoin (VRC)':
+        return ('BTC_VRC');
+      case 'BTC_VRC':
+        return ('VeriCoin (VRC)');
+
+      case 'Vertcoin (VTC)':
+        return ('BTC_VTC');
+      case 'BTC_VTC':
+        return ('Vertcoin (VTC)');
+
+      case 'BitcoinPlus (XBC)':
+        return ('BTC_XBC');
+      case 'BTC_XBC':
+        return ('BitcoinPlus (XBC)');
+
+      case 'Counterparty (XCP)':
+        return ('BTC_XCP');
+      case 'BTC_XCP':
+        return ('Counterparty (XCP)');
+
+      case 'NEM (XEM)':
+        return ('BTC_XEM');
+      case 'BTC_XEM':
+        return ('NEM (XEM)');
+
+      case 'Monero (XMR)':
+        return ('BTC_XMR');
+      case 'BTC_XMR':
+        return ('Monero (XMR)');
+
+
+
+      case 'Primecoin (XPM)':
+        return ('BTC_XPM');
+      case 'BTC_XPM':
+        return ('Primecoin (XPM)');
 
       case 'Ripple (XRP)':
         return ('BTC_XRP');
       case 'BTC_XRP':
         return ('Ripple (XRP)');
 
-      case 'Etherium':
-        return ('BTC_ETH');
-      case 'BTC_ETH':
-        return ('Etherium');
+      case 'Vcash (XVC)':
+        return ('BTC_XVC');
+      case 'BTC_XVC':
+        return ('Vcash (XVC)');
 
-      case 'USDT':
+      case 'Zcash (ZEC)':
+        return ('BTC_ZEC');
+      case 'BTC_ZEC':
+        return ('Zcash (ZEC)');
+
+      // Currencies
+      case 'American (USDT)':
         return ('USDT');
-      case 'CAD':
+      case "USDT":
+        return('American (USDT)');
+
+      case 'Canadian (CAD)':  
         return ('CAD');
-      case 'EUR':
+      case 'CAD':
+        return ('Canadian (CAD)')
+     
+      case 'Austrailian (AUD)':  
+        return ('AUD');
+      case 'AUD':
+        return ('Austrailian (AUD)')
+
+      case 'Buglarian (BGN)':  
+        return ('BGN');
+      case 'BGN':
+        return ('Buglarian (BGN)')
+
+      case 'Brazilian (BRL)':  
+        return ('BRL');
+      case 'BRL':
+        return ('Brazilian (BRL)')
+
+      case 'Swiss Franc (CHF)':  
+        return ('CHF');
+      case 'CHF':
+        return ('Swiss Franc (CHF)')
+
+      case 'Chinese (CNY)':  
+        return ('CNY');
+      case 'CNY':
+        return ('Chinese (CNY)')
+      
+      case 'Czech (CZK)':  
+        return ('CZK');
+      case 'CZK':
+        return ('Czech (CZK)')
+
+      case 'Danish (DKK)':  
+        return ('DKK');
+      case 'DKK':
+        return ('Danish (DKK)')
+
+      case 'British Pound (GBP)':  
+        return ('GBP');
+      case 'GBP':
+        return ('British Pound (GBP)')
+      
+      case 'Hong Kong (HKD)':  
+        return ('HKD');
+      case 'HKD':
+        return ('Hong Kong (HKD)')
+
+      case 'Croatian (HRK)':  
+        return ('HRK');
+      case 'HRK':
+        return ('Croatian (HRK)')
+      
+      case 'Hungarian (HUF)':  
+        return ('HUF');
+      case 'HUF':
+        return ('Hungarian (HUF)')
+
+      case 'Indonesian (IDR)':  
+        return ('IDR');
+      case 'IDR':
+        return ('Indonesian (IDR)')
+
+      case 'Israeli (ILS)':  
+        return ('ILS');
+      case 'ILS':
+        return ('Israeli (ILS)')
+
+      case 'Indian (INR)':  
+        return ('INR');
+      case 'INR':
+        return ('Indian (INR)')
+
+      case 'Japanese (JPY)':  
+        return ('JPY');
+      case 'JPY':
+        return ('Japanese (JPY)')
+
+      case 'South Korean (KRW)':  
+        return ('KRW');
+      case 'KRW':
+        return ('South Korean (KRW)')
+
+      case 'Mexican (MXN)':  
+        return ('MXN');
+      case 'MXN':
+        return ('Mexican (MXN)')
+
+      case 'Malaysian (MYR)':  
+        return ('MYR');
+      case 'MYR':
+        return ('Malaysian (MYR)')
+      
+      case 'Norwegian (NOK)':  
+        return ('NOK');
+      case 'NOK':
+        return ('Malaysian (NOK)')
+
+      case 'Polish (PLN)':  
+        return ('PLN');
+      case 'PLN':
+        return ('Polish (PLN)')
+
+      case 'New Zealand (NZD)':  
+        return ('NZD');
+      case 'NZD':
+        return ('New Zealand (NZD)')
+
+      case 'Philippine (PHP)':  
+        return ('PHP');
+      case 'PHP':
+        return ('Philippine (PHP)')
+
+      case 'Romanian (RON)':  
+        return ('RON');
+      case 'RON':
+        return ('Romanian (RON)')
+
+      case 'Russian (RUB)':  
+        return ('RUB');
+      case 'RUB':
+        return ('Russian (RUB)')
+
+      case 'Swedish (SEK)':  
+        return ('SEK');
+      case 'SEK':
+        return ('Swedish (SEK)')
+
+      case 'Singapore (SGD)':  
+        return ('SGD');
+      case 'SGD':
+        return ('Singapore (SGD)')
+
+      case 'Thai (THB)':  
+        return ('THB');
+      case 'THB':
+        return ('Thai (THB)')
+
+      case 'Turkish (TRY)':  
+        return ('TRY');
+      case 'TRY':
+        return ('Turkish (TRY)')
+
+      case 'South African (ZAR)':  
+        return ('ZAR');
+      case 'ZAR':
+        return ('South African (ZAR)')
+
+      case 'Euro (EUR)':
         return ('EUR');
+      case 'EUR':
+        return('Euro (EUR)')
     }//END SWITCH
   }//END CONVERTNAM
 
