@@ -13,9 +13,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./contents.component.scss']
 })
 export class ContentsComponent implements OnInit {
+  filterName: string;
 
-  filterType: string;
-  filterSearch: string;
 
   // Variables for front end
   instructions: boolean = false;
@@ -30,20 +29,16 @@ export class ContentsComponent implements OnInit {
       {name: "make a selection..."},
       {name: "Synereo (AMP)"},
       {name: "Ardor (ARDR)"},
-      {name: "Boolberry (BBR)"},
       {name: "Bytecoin (BCN)"},
       {name: "BitCrystals (BCY)"},
       {name: "Belacoin (BELA)"},
       {name: "Bitcoin (BTC)"},  
-      {name: "Bitstart (BITS)"},
       {name: "BlackCoin (BLK)"},
       {name: "BitcoinDark (BTCD)"},
       {name: "Bitmark (BTM)"},
       {name: "BitShares (BTS)"},
       {name: "Burst (BURST)"},
-      {name: "Coin2.0 (C2)"},
       {name: "CLAMS (CLAM)"},
-      {name: "Curecoin (CURE)"},
       {name: "DASH (DASH) "},
       {name: "Decred (DCR)"},
       {name: "DigiByte (DGB)"},
@@ -58,51 +53,38 @@ export class ContentsComponent implements OnInit {
       {name: "Golem (GNT)"},
       {name: "Gridcoin Research (GRC)"},
       {name: "Huntercoin (HUC)"},
-      {name: "Horizon (HZ)"},
-      {name: "IO Digital Currency (IOC)"},
       {name: "LBRY Credits (LBC)"},
       {name: "Lisk (LSK)"},
       {name: "Litecoin (LTC)"},
       {name: "MaidSafeCoin (MAID)"},
-      {name: "MyriadCoin (MYR)"},
       {name: "Nautiluscoin (NAUT)"},
       {name: "NAVCoin (NAV)"},
       {name: "Neoscoin (NEOS)"},
       {name: "Namecoin (NMC)"},
-      {name: "NobleCoin (NOBL)"},
       {name: "DNotes (NOTE)"},
-      {name: "NuShares (NSR)"},
       {name: "Nexium (NXC)"},
       {name: "NST (NXT)"},
       {name: "Omni (OMNI)"},
       {name: "PascalCoin (PASC)"},
-      {name: "Pinkcoin (PASC)"},
+      {name: "Pinkcoin (PINK)"},
       {name: "PotCoin (POT)"},
       {name: "Peercoin (PPC)"},
-      {name: "Qibuck (QBK)"},
-      {name: "Qora (QORA)"},
-      {name: "Quatloo (QTL)"},
       {name: "Radium (RADS)"},
-      {name: "Rubycoin (RBY)"},
       {name: "Augur (REP)"},
       {name: "Riecoin (RIC)"},
       {name: "Steem Dollars (SBD)"},
       {name: "Siacoin (SC)"},
-      {name: "Shadow (SDC)"},
       {name: "Storjcoin X (SJCX)"},
       {name: "STEEM (STEEM)"},
       {name: "Stellar (STR)"},
       {name: "Stratis (STRAT)"},
       {name: "Syscoin (SYS)"},
-      {name: "SuperNET (UNITY)"},
       {name: "Viacoin (VIA)"},
-      {name: "Voxels (VOX)"},
       {name: "VeriCoin (VRC)"},
       {name: "Vertcoin (VTC)"},
       {name: "BitcoinPlus (XBC)"},
       {name: "Counterparty (XCP)"},
       {name: "NEM (XEM)"},
-      {name: "Maqi (XMG)"},
       {name: "Monero (XMR)"},
       {name: "Primecoin (XPM)"},
       {name: "Ripple (XRP)"},
@@ -154,19 +136,16 @@ export class ContentsComponent implements OnInit {
 coins: any[] = [
   "BTC_AMP",
   "BTC_ARDR",
-  "BTC_BBR",
   "BTC_BCN",
   "BTC_BCY",
+  "BTC_BTC",
   "BTC_BELA",
-  "BTC_BITS",
   "BTC_BLK",
   "BTC_BTCD",
   "BTC_BTM",
   "BTC_BTS",
   "BTC_BURST",
-  "BTC_C2",
   "BTC_CLAM",
-  "BTC_CURE",
   "BTC_DASH",
   "BTC_DCR",
   "BTC_DGB",
@@ -177,25 +156,19 @@ coins: any[] = [
   "BTC_EXP",
   "BTC_FCT",
   "BTC_FLDC",
-  "BTC_FLO",
   "BTC_GAME",
   "BTC_GNT",
   "BTC_GRC",
   "BTC_HUC",
-  "BTC_HZ",
-  "BTC_IOC",
   "BTC_LBC",
   "BTC_LSK",
   "BTC_LTC",
   "BTC_MAID",
-  "BTC_MYR",
   "BTC_NAUT",
   "BTC_NAV",
   "BTC_NEOS",
   "BTC_NMC",
-  "BTC_NOBL",
   "BTC_NOTE",
-  "BTC_NSR",
   "BTC_NXC",
   "BTC_NXT",
   "BTC_OMNI",
@@ -203,30 +176,22 @@ coins: any[] = [
   "BTC_PINK",
   "BTC_POT",
   "BTC_PPC",
-  "BTC_QBK",
-  "BTC_QORA",
-  "BTC_QTL",
   "BTC_RADS",
-  "BTC_RBY",
   "BTC_REP",
   "BTC_RIC",
   "BTC_SBD",
   "BTC_SC",
-  "BTC_SDC",
   "BTC_SJCX",
   "BTC_STEEM",
   "BTC_STR",
   "BTC_STRAT",
   "BTC_SYS",
-  "BTC_UNITY",
   "BTC_VIA",
-  "BTC_VOX",
   "BTC_VRC",
   "BTC_VTC",
   "BTC_XBC",
   "BTC_XCP",
   "BTC_XEM",
-  "BTC_XMG",
   "BTC_XMR",
   "BTC_XPM",
   "BTC_XRP",
@@ -354,7 +319,6 @@ type: string;
           this.coinResults.push({
             name: this.convertName(tempName as string),
             amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last * this.ticker['USDT_BTC'].last* this.currencyExchange[tempName]*100)/100,
-            type: "cryptoCurrency",
             increase: false,
             decrease: false       
           }); // push 
@@ -363,11 +327,9 @@ type: string;
         //convert all the crypto to crypto
         for(var i = 0 ; i <= this.coins.length - 1; i++){
           var tempName = this.coins[i] as string;
-          console.log(tempName);
           this.coinResults.push({
             name: this.convertName(tempName as string), 
             amount: Math.round(this.holdings * this.ticker[this.convertName(this.step2Selection)].last / this.ticker[tempName].last*100000000)/100000000,
-            type: "cryptoCurrency",
             increase: false,
             decrease: false
            }) // push   
@@ -381,7 +343,6 @@ type: string;
             this.coinResults.push({
               name: this.convertName(tempName as string),
               amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] * this.currencyExchange[tempName]*100)/100,
-              type: "regularCurrency",
               increase: false,
               decrease: false
               }) // push
@@ -393,7 +354,6 @@ type: string;
               this.coinResults.push({
                 name: this.convertName(tempName as string), 
                 amount: Math.round(this.holdings / this.currencyExchange[this.convertName(this.step2Selection)] / this.ticker['USDT_BTC'].last / this.ticker[tempName].last*100000000)/100000000,
-                type: "regularCurrency",
                 increase: false,
                 decrease: false
                 });  //push 
@@ -421,10 +381,6 @@ type: string;
       case 'BTC_ARDR':
         return ('Ardor (ARDR)');
 
-      case 'Boolberry (BBR)':
-        return ('BTC_BBR');
-      case 'BTC_BBR':
-        return ('Boolberry (BBR)');
 
       case 'Bytecoin (BCN)':
         return ('BTC_BCN');
@@ -445,11 +401,6 @@ type: string;
         return ('BTC_BTC');
       case 'BTC_BTC':
         return ('Bitcoin (BTC)');
-
-      case 'Bitstart (BITS)':
-        return ('BTC_BITS');
-      case 'BTC_BITS':
-        return ('Bitstart (BITS)');
 
       case 'BlackCoin (BLK)':
         return ('BTC_BLK');
@@ -473,23 +424,13 @@ type: string;
 
       case 'Burst (BURST)':
         return ('BTC_BURST');
-      case 'BTC_Burst (BURST':
+      case 'BTC_BURST':
         return ('Burst (BURST)');
-
-      case 'Coin2.0 (C2)':
-        return ('BTC_C2');
-      case 'BTC_C2':
-        return ('Coin2.0 (C2)');
 
         case 'CLAMS (CLAM)':
         return ('BTC_CLAM');
       case 'BTC_CLAM':
         return ('CLAMS (CLAM)');
-
-        case 'Curecoin (CURE)':
-        return ('BTC_CURE');
-      case 'BTC_CURE':
-        return ('Curecoin (CURE)');
 
       case 'DASH (DASH)':
         return ('BTC_DASH');
@@ -561,19 +502,9 @@ type: string;
       case 'BTC_HUC':
         return ('Huntercoin (HUC)');
 
-      case 'Horizon (HZ)':
-        return ('BTC_HZ');
-      case 'BTC_HZ':
-        return ('Horizon (HZ)');
-
-      case 'IO Digital Currency (IOC)':
-        return ('BTC_IOC');
-      case 'BTC_IOC':
-        return ('IO Digital Currency (IOC)');
-
       case 'LBRY Credits (LBC)':
         return ('BTC_LBC');
-      case 'BTC_DASH':
+      case 'BTC_LBC':
         return ('LBRY Credits (LBC)');
 
       case 'Lisk (LSK)':
@@ -590,11 +521,6 @@ type: string;
         return ('BTC_MAID');
       case 'BTC_MAID':
         return ('MaidSafeCoin (MAID)');
-
-      case 'MyriadCoin (MYR)':
-        return ('BTC_MYR');
-      case 'BTC_MYR':
-        return ('MyriadCoin (MYR)');
 
       case 'Nautiluscoin (NAUT)':
         return ('BTC_NAUT');
@@ -616,20 +542,10 @@ type: string;
       case 'BTC_NMC':
         return ('Namecoin (NMC)');
 
-      case 'NobleCoin (NOBL)':
-        return ('BTC_NOBL');
-      case 'BTC_NOBL':
-        return ('NobleCoin (NOBL)');
-
       case 'DNotes (NOTE)':
         return ('BTC_NOTE');
       case 'BTC_NOTE':
         return ('DNotes (NOTE)');
-
-      case 'NuShares (NSR)':
-        return ('BTC_NSR');
-      case 'BTC_NSR':
-        return ('NuShares (NSR)');
 
       case 'Nexium (NXC)':
         return ('BTC_NXC');
@@ -651,10 +567,10 @@ type: string;
       case 'BTC_PASC':
         return ('PascalCoin (PASC)');
 
-      case 'Pinkcoin (PASC)':
-        return ('BTC_PASC');
-      case 'BTC_PASC':
-        return ('Pinkcoin (PASC)');
+      case 'Pinkcoin (PINK)':
+        return ('BTC_PINK');
+      case 'BTC_PINK':
+        return ('Pinkcoin (PINK)');
 
       case 'PotCoin (POT)':
         return ('BTC_POT');
@@ -665,31 +581,11 @@ type: string;
         return ('BTC_PPC');
       case 'BTC_PPC':
         return ('Peercoin (PPC)');
-
-      case 'Qibuck (QBK)':
-        return ('BTC_QBK');
-      case 'BTC_QBK':
-        return ('Qibuck (QBK)');
-
-      case 'Qora (QORA)':
-        return ('BTC_QORA');
-      case 'BTC_QORA':
-        return ('Qora (QORA)');
-      
-      case 'Quatloo (QTL)':
-        return ('BTC_QTL');
-      case 'BTC_QTL':
-        return ('Quatloo (QTL)');
       
       case 'Radium (RADS)':
         return ('BTC_RADS');
       case 'BTC_RADS':
         return ('Radium (RADS)');
-
-      case 'Rubycoin (RBY)':
-        return ('BTC_RBY');
-      case 'BTC_RBY':
-        return ('Rubycoin (RBY)');
 
       case 'Augur (REP)':
         return ('BTC_REP');
@@ -711,11 +607,6 @@ type: string;
       case 'BTC_SC':
         return ('Siacoin (SC)');
 
-      case 'Shadow (SDC)':
-        return ('BTC_SCD');
-      case 'BTC_SCD':
-        return ('Shadow (SDC)');
-
       case 'Storjcoin X (SJCX)':
         return ('BTC_SJCX');
       case 'BTC_SJCX':
@@ -733,7 +624,7 @@ type: string;
 
       case 'Stratis (STRAT)':
         return ('BTC_STRAT');
-      case 'BTC_START':
+      case 'BTC_STRAT':
         return ('Stratis (STRAT)');
       
       case 'Syscoin (SYS)':
@@ -741,20 +632,10 @@ type: string;
       case 'BTC_SYS':
         return ('Syscoin (SYS)');
 
-      case 'SuperNET (UNITY)':
-        return ('BTC_UNITY');
-      case 'BTC_UNITY':
-        return ('SuperNET (UNITY)');
-
       case 'Viacoin (VIA)':
         return ('BTC_VIA');
       case 'BTC_VIA':
         return ('Viacoin (VIA)');
-
-      case 'Voxels (VOX)':
-        return ('BTC_VOX');
-      case 'BTC_VOX':
-        return ('Voxels (VOX)');
 
       case 'VeriCoin (VRC)':
         return ('BTC_VRC');
@@ -780,11 +661,6 @@ type: string;
         return ('BTC_XEM');
       case 'BTC_XEM':
         return ('NEM (XEM)');
-
-      case 'Maqi (XMG)':
-        return ('BTC_XMG');
-      case 'BTC_XMG':
-        return ('Maqi (XMG)');
 
       case 'Monero (XMR)':
         return ('BTC_XMR');

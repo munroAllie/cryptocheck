@@ -10,16 +10,15 @@ import { ContentsComponent } from './contents/contents.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { FilterType} from './filterType.pipe';
-import { FilterSearch} from './filterSearch.pipe';
+
+import { FilterName} from './filterName.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     ContentsComponent,
     HeaderComponent,
     FooterComponent,
-    FilterType,
-    FilterSearch
+    FilterName
   ],
   imports: [
     BrowserModule,
