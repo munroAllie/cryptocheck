@@ -6,25 +6,26 @@
 		<p><span>Welcome to Cryptocheck</span>, 
 			<br> 
 				This application is <span>a free to use tool </span> for monitoring the current value of your crypocurrency and what your holdings can translate to.	<br><br>
-				<span>Note:</span> Cryptocheck is adding support for all currencies, If your coin is not supported please <span><a href="sales@cryptocheck.io">let us know</a></span> and we will add it.
+				<!--><span>Note:</span> Cryptocheck is adding support for all currencies, If your coin is not supported please <span><a href="sales@cryptocheck.io">let us know</a></span> and we will add it.<-->
 		</p>
 		<hr>
 	</div>
 	<!-- Step One -->
 <form class="steps">
-	<p>Check the value of your currency, <span>follow these three steps</span>:</p>
+	<!--><p>Check the value of your currency, <span>follow these three steps</span>:</p>-->
 	<div class="stepOne">
 		<h1>Step 1 <span>-</span> </h1>
 		<h2>Choose A Currency Type</h2>
 		<div class="selectionWrapper">
-			<div class="cryptoCurrency" (click)="cryptoSelected = true; regSelected = false" [ngClass]="{active: cryptoSelected}">
-
-					<img src="../../assets/images/cryptocurrency.png">
-
+			<div class="crypocurrencywrapper">
+				<div class="cryptoCurrency" (click)="cryptoSelected = true; regSelected = false" [ngClass]="{active: cryptoSelected}">
+						<img src="../../assets/images/cryptocurrency.png">
+				</div>
 			</div>
-			<div class="regularCurrency" (click)="regSelected = true; cryptoSelected = false" [ngClass]="{active: regSelected}">
-					<img src="../../assets/images/regularcurrency.png">
-
+			<div class="regularcurrencywrapper">
+				<div class="regularCurrency" (click)="regSelected = true; cryptoSelected = false" [ngClass]="{active: regSelected}">
+						<img src="../../assets/images/regularcurrency.png">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -33,7 +34,7 @@
 		<h1>Step 2 <span>-</span> </h1>
 		<h2>Choose A Currency</h2>
 		<!-- placeholder-->
-		<select name="cryptocurrency" class="stepTwoDropdown" *ngIf="!cryptoSelected && !regSelected">
+		<select name="cryptocurrency" class="stepTwoDropdown" disabled *ngIf="!cryptoSelected && !regSelected">
 	
 		</select>
 		<!-- If Crypto Currency checked in Step 1 -->
@@ -56,56 +57,53 @@
 	<!-- Step Three -->
 	<div class="stepThree" [ngClass]="{Active: step2Selection}">
 		<h1>Step 3 <span>-</span> </h1><h2>Enter Your Holdings</h2>
-
-		<input type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings">
+		<input *ngIf="!step2Selection" type="text" name="holdings" class="stepThreeInput" placeholder="" disabled>
+		<input *ngIf="step2Selection"type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings">
 	</div>	
 </form>
 
 </section>
 
-<section class="results">
-<div class="warning" *ngIf="!holdings">
-	<p> Complete the three steps to display your currencies here</p>
-</div>
-<div class="whatyouhave" *ngIf="holdings">
-	<p>You Could Have...</p>
-	<div class="pinningInstructions" (click)="instructions = !instructions; instructionsToggle()">
-		<i class="material-icons">gps_not_fixed</i>
-		<span>{{ instructionsLabel }}</span>
-	</div>
-	<div class="explanation" *ngIf="instructions">
-		<div class="iconwrapper">
+<section class="results" *ngIf="holdings">
+	<div class="whatyouhave">
+		<div class="pinningInstructions" (click)="instructions = !instructions; instructionsToggle()">
 			<i class="material-icons">gps_not_fixed</i>
+			<span>{{ instructionsLabel }}</span>
 		</div>
-		<div class="explanationwrapper">
-			<p>This button will allow you to <span> link </span> the selected currency to your browsers title. This will allow you to leave the site while still being able to watch the value of your selected currency at a glance.</p>
-		</div>
-		<div class="imagewrapper"><img src="../../assets/images/pinned.jpg"></div>
-	</div>
-</div>
-<div class="search">
-				<input type="text" placeholder="Search" [(ngModel)]="filterName"/>
-				<i class="material-icons">search</i>
-</div>
-
-
-<div class="ticker" *ngFor="let coinresult of coinResults | filterName:filterName">
-	<div class="wrapper" *ngIf="coinresult.name != step2Selection">
-		<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name)">
-			<i class="material-icons" *ngIf="pinnedCoinAmount != coinresult.amount">gps_not_fixed</i>
-			<i class="material-icons selectedCoin" *ngIf="pinnedCoinAmount === coinresult.amount">gps_fixed</i>
-		</div>
-
-		<div class="amount" [ngClass]="{amountpinned: pinnedCoinAmount === coinresult.amount, 
-										amountincrease: coinresult.increase,
-										amountdecrease: coinresult.decrease}">
-										{{coinresult.amount}}
-		</div>
-		<div class="name" [ngClass]="{	namepinned: pinnedCoinAmount === coinresult.amount, 
-										nameincrease: coinresult.increase,
-										namedecrease: coinresult.decrease}">
-										{{coinresult.name}} 
+		<div class="explanation" *ngIf="instructions">
+			<div class="iconwrapper">
+				<i class="material-icons">gps_not_fixed</i>
+			</div>
+			<div class="explanationwrapper">
+				<p>This button will allow you to <span> link </span> the selected currency to your browsers title. This will allow you to leave the site while still being able to watch the value of your selected currency at a glance.</p>
+			</div>
+			<div class="imagewrapper"><img src="../../assets/images/pinned.jpg"></div>
 		</div>
 	</div>
-</div>
+	<hr>
+	<div class="search">
+		<input type="text" placeholder="Search..." [(ngModel)]="filterName"/>		
+	</div>
+	<div class="instructions">
+		<p>You Could Have...</p>
+	</div>
+	<div class="ticker" *ngFor="let coinresult of coinResults | filterName:filterName">
+		<div class="wrapper" *ngIf="coinresult.name != step2Selection">
+			<div class="pin" (click)="pinTitle(coinresult.amount, coinresult.name)">
+				<i class="material-icons" *ngIf="pinnedCoinAmount != coinresult.amount">gps_not_fixed</i>
+				<i class="material-icons selectedCoin" *ngIf="pinnedCoinAmount === coinresult.amount">gps_fixed</i>
+			</div>
+
+			<div class="amount" [ngClass]="{amountpinned: pinnedCoinAmount === coinresult.amount, 
+											amountincrease: coinresult.increase,
+											amountdecrease: coinresult.decrease}">
+											{{coinresult.amount}}
+			</div>
+			<div class="name" [ngClass]="{	namepinned: pinnedCoinAmount === coinresult.amount, 
+											nameincrease: coinresult.increase,
+											namedecrease: coinresult.decrease}">
+											{{coinresult.name}} 
+			</div>
+		</div>
+	</div>
 </section>

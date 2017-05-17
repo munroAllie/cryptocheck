@@ -26,7 +26,6 @@ export class ContentsComponent implements OnInit {
  //ADD IN ANY EXTRA CURRENCIES OR COINS YOU WANT (ALSO ADD IT IN THE COINS AND CURRENCY ARRAY BELOW)
  //ALSO GO TO THE CONVERTNAME FUCTION AND ADD IN THE APPROPRIATE NAME (VERY BOTTOM OF FILE
  step2AOptions : any[] = [
-      {name: "make a selection..."},
       {name: "Synereo (AMP)"},
       {name: "Ardor (ARDR)"},
       {name: "Bytecoin (BCN)"},
@@ -93,7 +92,6 @@ export class ContentsComponent implements OnInit {
      
     ]; // step2AOptions
  step2BOptions : any[] = [
-      {name: "make a selection..."},
       {name: "Canadian (CAD)"},
       {name: "American (USDT)"},
       {name: "Euro (EUR)"},
@@ -252,7 +250,7 @@ type: string;
 
   constructor(private conversionService: ConversionService, private titleService: Title) {
   }  
-  callAPI(){  
+  callAPI(){ 
     this.convert();
     // Tells me beforeCoinResults if it is set
     if(this.beforeCoinResults[1]){

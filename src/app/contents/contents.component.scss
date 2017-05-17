@@ -27,8 +27,6 @@
 		@include span(6 of 12);
 		display: inline-block;
 		float: left;
-		border-color: $font;
-		border-right: 1px;
 		padding-top: .5em;
 		border-style: solid;
 		p{
@@ -63,43 +61,47 @@
 			opacity: 0;
 			@include fade(.25s);
 			.selectionWrapper{
-				display: block;
-				margin-left: -1em;
-			}; //selection wrapper
-			.cryptoCurrency, .regularCurrency{	
-				width: 40%;
-				@include BottomRightDropShadow;
-				margin-right: 2%;
-				margin-left: 1em;;
+				@include span (12 of 12);
 				margin-top: 1em;
+				margin-bottom: 1em; 
+				display: block;
+			}; //selection wrapper
+			.regularcurrencywrapper, .crypocurrencywrapper{
 				display: inline-block;
-				border-radius: 10px;
-				overflow: hidden;
-				background-color: $accent;
-				height: 113px;
-				border-style: solid;
-				border-width: 2px;
-				border-color: rgba(0, 0, 0, 0);
-				text-align: center;
-				cursor: pointer;
-				img{
-					width: 60%;
-					max-width: 150px;
+				@include span (6 of 12);
+				
+				.cryptoCurrency, .regularCurrency{		
+					@include BottomRightDropShadow;
+					width: 90%;
+					display: inline-block;
+					border-radius: 10px;
+					overflow: hidden;
+					background-color: $accent;
+					height: 113px;
+					border-style: solid;
+					border-width: 2px;
+					border-color: rgba(0, 0, 0, 0);
+					text-align: center;
 					
-					height: auto;
-					margin-top: 30px;
-				};
-		
-			}; // cryptocurrency
-			.cryptoCurrency:hover, .regularCurrency:hover{
-				border-color: $font;
-			}; // hover states
-			.active{
-				background-color: $primary;
-			}; // active states
-		}; //stepone
+					img{
+						width: 60%;
+						width: 125px;
+						height: auto;
+						margin-top: 30px;
+						
+					}; //img
+				}; // cryptocurrency
+				.cryptoCurrency:hover, .regularCurrency:hover{
+					border-color: $font;
+				}; // hover states
+				.active{
+					background-color: $primary;
+				}; // active states
+			}; //wrappers
+		}; //step one
 		//initialize status of step 2 and three
 		.stepTwo, .stepThree{
+			@include span (12 of 12);
 			opacity: 0;
 		}; // step two step three
 		//animate
@@ -136,6 +138,9 @@
 	}; //steps
 }; // contents
 	.results{
+		border-color: $font;
+		border-style: solid;
+		border-width: 0px 0px 0px 1px;
 		padding-top: 0.5em;
 		@include span (6 of 12);
 		display: inline-block;
@@ -145,24 +150,36 @@
 			p{
 			font: $paragraph;
 			}; // p
-		}; // warning	
+		}; // warning
+		.instructions{
+			@include span (12 of 12);
+			display: block;
+			margin-top: 1em;
+			p{
+				font: $paragraph;
+			};
+		}; // instructions	
 		.search{
-		display: inline-block;
-		margin-top: 10px;
-		@include container;
+			display: block;
+			margin-top: 10px;
+			@include span (12 of 12);
+			padding: 0;
+			
 			.searchLabel{
 				font: $font;
-				display: inline-block;
+				display: block;
 			}; // name search label
 			input{
-				font-size: 1em;
-				display: inline-block;
-				border-radius: 8px;
+				display: block;
+				font: $paragraph;
+				display: block;
+				height: 41px;
 				border-style: solid;
-				border-width: 1px;
+				border-radius: 10px;
+				border-width: 2px;
 				border-color: $font;
-				color: $font;
-				padding-left: 5px;	
+				@include span (12 of 12);
+				height: 41px;
 			}; // input
 			i{
 				font-weight: 800;
@@ -173,9 +190,6 @@
 			display: none;
 			@include clearfix;
 			display: block;
-			p{
-				font: $paragraph;
-			};
 			.pinningInstructions{
 				margin-top: 1em;
 				font: $paragraph;
@@ -235,9 +249,12 @@
 					};
 				};
 			}; // explanation
+			@include breakpoint (0 $tablet){
+				display: none;
+			};
 		}; // what you have
-		
 
+	
 		.ticker{
 			display: inline-block;
 			vertical-align: top;
@@ -257,6 +274,9 @@
 					.selectedCoin:hover{
 						cursor: default;
 					}; // selected coin hover
+					@include breakpoint ( 0 $tablet){
+						display: none;
+					};
 				} // pin
 				.name{
 					color: $white;
@@ -287,7 +307,7 @@
 				}; // name decrease
 				.amount{
 					text-align: right;
-					height: 16px;
+					height: 1em;
 					border-radius: 10px 0px 0px 10px; 
 					display: inline-block;
 					padding: 0.5em;
@@ -297,7 +317,7 @@
 					border-width: 2px;
 					border-color: $font;
 					@include breakpoint (0 $phone){
-						width: 15%;
+						width: 25%;
 					}; // breakpoint
 				}; //amount
 				.amountpinned{
