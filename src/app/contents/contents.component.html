@@ -18,12 +18,12 @@
 		<h2>Choose A Currency Type</h2>
 		<div class="selectionWrapper">
 			<div class="crypocurrencywrapper">
-				<div class="cryptoCurrency" (click)="cryptoSelected = true; regSelected = false" [ngClass]="{active: cryptoSelected}">
+				<div class="cryptoCurrency" (click)="cryptoSelected = true; regSelected = false; reset()" [ngClass]="{active: cryptoSelected}">
 						<img src="../../assets/images/cryptocurrency.png">
 				</div>
 			</div>
 			<div class="regularcurrencywrapper">
-				<div class="regularCurrency" (click)="regSelected = true; cryptoSelected = false" [ngClass]="{active: regSelected}">
+				<div class="regularCurrency" (click)="regSelected = true; cryptoSelected = false; reset()" [ngClass]="{active: regSelected}">
 						<img src="../../assets/images/regularcurrency.png">
 				</div>
 			</div>

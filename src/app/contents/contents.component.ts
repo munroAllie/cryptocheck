@@ -127,6 +127,13 @@ export class ContentsComponent implements OnInit {
    
     ]; // step2BOptions
 
+    reset(){
+      if(this.step2Selection && this.holdings){
+        this.holdings = null;
+        this.step2Selection = null;
+      }
+    }
+
  step2Selection: string; //Holds the value of the currency you have selected.
  holdings: number; //The amount of money you have inputed.
 
