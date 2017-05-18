@@ -56,7 +56,7 @@
 	</div>
 	<!-- Step Three -->
 	<div class="stepThree" [ngClass]="{Active: step2Selection}">
-		<h1>Step 3 <span>-</span> </h1><h2>Enter Your Holdings</h2>
+		<h1>Step 3 <span>-</span> </h1><h2>Input Amount of Coins or Currency Value</h2>
 		<input *ngIf="!step2Selection" type="text" name="holdings" class="stepThreeInput" placeholder="" disabled>
 		<input *ngIf="step2Selection"type="text" name="holdings" class="stepThreeInput" placeholder="enter your holdings..." [(ngModel)]="holdings">
 	</div>	
