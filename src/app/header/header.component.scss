@@ -9,6 +9,9 @@
 		padding: 5px 0;
 		.brand{
 			height: 40px;
+			@include breakpoint (0 $phone){
+				display: none;
+			}
 		}; //brand
 		.brandTitle{
 			padding-top: 3px;
@@ -17,6 +20,9 @@
 			font: $brand;
 			display: inline-block;
 			color: $white;
+			@include breakpoint(0 $phone){
+				font-size: 1.5em;
+			}
 		}; //brand title
 	} // // brand wrapper
 }; //header bar
