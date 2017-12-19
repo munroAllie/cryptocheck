@@ -9,8 +9,8 @@ export class FooterComponent{
 
   donate: string = "Donate Bitcoin";
   donatebutton(){
-    this.donate = "3GUVHU5ogh86ecZREBBFrv8bZSsqp13PsT";
+    this.donate = "1FP6BsoZSEB7m7ovYANRFxGv49rEAyubts";
   }
-  constructor() { 
+  constructor() {
   }
 }
