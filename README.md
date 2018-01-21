@@ -1,29 +1,50 @@
+# Cryptocheck
 
-# CryptoCheck
+### What is it?
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
+Cryptocheck is a web application that allows the user to convert real and cryptocurrencies to all other real and cryptocurrencies. This web application uses live end points from the poloniex cryptocurrencie exchange and a real world currency endpoint. 
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+### Features
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+  - Choose any real world currency
+  - Choose any cryptocurrency
+  - select the value amount of the currency you have selected.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### You can also:
+  - Receive visual feedback showing if the value has increased or decrease in real time.
+  - Change your selection at anytime.
 
-## Running end-to-end tests
+### How was it made?
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+Homework checker uses:
 
-## Further help
+* [Angular] - HTML enhanced for web apps
+* [Bootstrap] - great UI boilerplate for modern web apps
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Installation
+
+Open a command line, copy and paste the following. Press enter to excute the last line "npm start" after all of the previous commands have finished. It will take a couple of minutes to install of the necessary files.
+```sh
+git clone https://github.com/JohnMunro/cryptocheck
+cd cryptocheck
+npm install
+npm start
+```
+One everything has completed open up a brower and go to http://localhost:4200/ and enjoy.
+
+### Features to add
+- The ability for new cryptocurrencies to be added at run time.
+- Option to swap the values being compared.
+- See a graph showing the history of the currency selected.
+
+
+
+   [Bootstrap]: <http://twitter.github.com/bootstrap/>
+   [Angular]: <https://angular.io/>
+   [Firebase]: <https://firebase.google.com/>
+    
