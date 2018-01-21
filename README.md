@@ -2,7 +2,7 @@
 
 ### What is it?
 
-Cryptocheck is a web application that allows the user to convert real and cryptocurrencies to all other real and cryptocurrencies. This web application uses live end points from the poloniex cryptocurrency exchange and a real world currency endpoint. 
+Cryptocheck is a web application that allows the user to convert real and cryptocurrencies to all other real and cryptocurrencies. This web application uses live end points from the poloniex cryptocurrency exchange and a real world currency endpoint. You can visit cryptocheck [here]
 
 ![cryptocurrency](https://user-images.githubusercontent.com/5952902/35198759-126ae64e-feca-11e7-9ffb-f0a9dc532ade.png)
 
@@ -49,4 +49,4 @@ One everything has completed open up a brower and go to http://localhost:4200/ a
    [Bootstrap]: <http://twitter.github.com/bootstrap/>
    [Angular]: <https://angular.io/>
    [Firebase]: <https://firebase.google.com/>
-    
+    [here]: <http://app.cryptocheck.io>
