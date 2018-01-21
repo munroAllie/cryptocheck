@@ -56,11 +56,11 @@ export class ContentsComponent implements OnInit {
       {name: "Lisk (LSK)"},
       {name: "Litecoin (LTC)"},
       {name: "MaidSafeCoin (MAID)"},
-      {name: "Nautiluscoin (NAUT)"},
+  //    {name: "Nautiluscoin (NAUT)"}, no longer available
       {name: "NAVCoin (NAV)"},
       {name: "Neoscoin (NEOS)"},
       {name: "Namecoin (NMC)"},
-      {name: "DNotes (NOTE)"},
+ //     {name: "DNotes (NOTE)"}, no longer available
       {name: "Nexium (NXC)"},
       {name: "NST (NXT)"},
       {name: "Omni (OMNI)"},
@@ -73,7 +73,7 @@ export class ContentsComponent implements OnInit {
       {name: "Riecoin (RIC)"},
       {name: "Steem Dollars (SBD)"},
       {name: "Siacoin (SC)"},
-      {name: "Storjcoin X (SJCX)"},
+//      {name: "Storjcoin X (SJCX)"}, no longer available
       {name: "STEEM (STEEM)"},
       {name: "Stellar (STR)"},
       {name: "Stratis (STRAT)"},
@@ -169,11 +169,11 @@ coins: any[] = [
   "BTC_LSK",
   "BTC_LTC",
   "BTC_MAID",
-  "BTC_NAUT",
+ // "BTC_NAUT", //no longer available
   "BTC_NAV",
   "BTC_NEOS",
   "BTC_NMC",
-  "BTC_NOTE",
+ // "BTC_NOTE", //no longer available
   "BTC_NXC",
   "BTC_NXT",
   "BTC_OMNI",
@@ -186,7 +186,7 @@ coins: any[] = [
   "BTC_RIC",
   "BTC_SBD",
   "BTC_SC",
-  "BTC_SJCX",
+//  "BTC_SJCX", no longer available
   "BTC_STEEM",
   "BTC_STR",
   "BTC_STRAT",
@@ -315,7 +315,7 @@ type: string;
     convert(){
       this.beforeCoinResults = this.coinResults;
       this.coinResults = [];
-
+      
       if(this.cryptoSelected && this.step2Selection){
        
         //convert all the crypto to currencies
@@ -531,7 +531,7 @@ type: string;
         return ('BTC_NAUT');
       case 'BTC_NAUT':
         return ('Nautiluscoin (NAUT)');
-
+//issue is here
       case 'NAVCoin (NAV)':
         return ('BTC_NAV');
       case 'BTC_NAV':
